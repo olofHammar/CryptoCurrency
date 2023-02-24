@@ -17,6 +17,9 @@
 		E4C54DA329A8B10B0060F4DB /* Model in Frameworks */ = {isa = PBXBuildFile; productRef = E4C54DA229A8B10B0060F4DB /* Model */; };
 		E4C54DA629A8B1A10060F4DB /* Network in Frameworks */ = {isa = PBXBuildFile; productRef = E4C54DA529A8B1A10060F4DB /* Network */; };
 		E4C54DA929A8B1D80060F4DB /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = E4C54DA829A8B1D80060F4DB /* Domain */; };
+		E4C54DAC29A8DBD10060F4DB /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C54DAB29A8DBD10060F4DB /* AppConfig.swift */; };
+		E4C54DB129A8F9010060F4DB /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C54DB029A8F9010060F4DB /* RootViewModel.swift */; };
+		E4C54DB329A8F9240060F4DB /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C54DB229A8F9240060F4DB /* RootView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +53,9 @@
 		E4C54DA029A8B0E50060F4DB /* Model */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Model; sourceTree = "<group>"; };
 		E4C54DA429A8B18F0060F4DB /* Network */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Network; sourceTree = "<group>"; };
 		E4C54DA729A8B1CA0060F4DB /* Domain */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Domain; sourceTree = "<group>"; };
+		E4C54DAB29A8DBD10060F4DB /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		E4C54DB029A8F9010060F4DB /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
+		E4C54DB229A8F9240060F4DB /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +113,8 @@
 		E4C54D7529A8AF490060F4DB /* CryptoCurrency */ = {
 			isa = PBXGroup;
 			children = (
+				E4C54DAD29A8F8DD0060F4DB /* Presentation */,
+				E4C54DAA29A8DBC00060F4DB /* Config */,
 				E4C54D7629A8AF490060F4DB /* CryptoCurrencyApp.swift */,
 				E4C54D7829A8AF490060F4DB /* ContentView.swift */,
 				E4C54D7A29A8AF4B0060F4DB /* Assets.xcassets */,
@@ -145,6 +153,39 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E4C54DAA29A8DBC00060F4DB /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				E4C54DAB29A8DBD10060F4DB /* AppConfig.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		E4C54DAD29A8F8DD0060F4DB /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				E4C54DAE29A8F8EB0060F4DB /* Flows */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		E4C54DAE29A8F8EB0060F4DB /* Flows */ = {
+			isa = PBXGroup;
+			children = (
+				E4C54DAF29A8F8F20060F4DB /* Root */,
+			);
+			path = Flows;
+			sourceTree = "<group>";
+		};
+		E4C54DAF29A8F8F20060F4DB /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				E4C54DB029A8F9010060F4DB /* RootViewModel.swift */,
+				E4C54DB229A8F9240060F4DB /* RootView.swift */,
+			);
+			path = Root;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,8 +323,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4C54DAC29A8DBD10060F4DB /* AppConfig.swift in Sources */,
 				E4C54D7929A8AF490060F4DB /* ContentView.swift in Sources */,
+				E4C54DB129A8F9010060F4DB /* RootViewModel.swift in Sources */,
 				E4C54D7729A8AF490060F4DB /* CryptoCurrencyApp.swift in Sources */,
+				E4C54DB329A8F9240060F4DB /* RootView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

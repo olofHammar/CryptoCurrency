@@ -16,7 +16,7 @@ extension CoinsEndPoint: Endpoint {
     public var path: String {
         switch self {
         case .allSupportedCoins:
-            return "api/v3/coins/markets"
+            return "/api/v3/coins/markets"
         }
     }
 
@@ -66,7 +66,3 @@ extension CoinsEndPoint {
         case idAsc = "id_asc"
     }
 }
-
-/*
- URL: https://api.coingecko.com/api/v3/coins/markets?vs_currency=sek&order=market_cap_desc&per_page=250&page=1&sparkline=true&price_change_percentage=24h
- */

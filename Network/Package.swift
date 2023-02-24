@@ -24,7 +24,8 @@ let package = Package(
             name: "Network",
             dependencies: [
                 "Model"
-            ]),
+            ],
+            resources: [.copy("TestData/CoinData.json")]),
         .testTarget(
             name: "NetworkTests",
             dependencies: ["Network"]),
