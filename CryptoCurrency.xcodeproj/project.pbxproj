@@ -14,6 +14,9 @@
 		E4C54D8829A8AF4B0060F4DB /* CryptoCurrencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C54D8729A8AF4B0060F4DB /* CryptoCurrencyTests.swift */; };
 		E4C54D9229A8AF4C0060F4DB /* CryptoCurrencyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C54D9129A8AF4C0060F4DB /* CryptoCurrencyUITests.swift */; };
 		E4C54D9429A8AF4C0060F4DB /* CryptoCurrencyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C54D9329A8AF4C0060F4DB /* CryptoCurrencyUITestsLaunchTests.swift */; };
+		E4C54DA329A8B10B0060F4DB /* Model in Frameworks */ = {isa = PBXBuildFile; productRef = E4C54DA229A8B10B0060F4DB /* Model */; };
+		E4C54DA629A8B1A10060F4DB /* Network in Frameworks */ = {isa = PBXBuildFile; productRef = E4C54DA529A8B1A10060F4DB /* Network */; };
+		E4C54DA929A8B1D80060F4DB /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = E4C54DA829A8B1D80060F4DB /* Domain */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 		E4C54D8D29A8AF4C0060F4DB /* CryptoCurrencyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoCurrencyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4C54D9129A8AF4C0060F4DB /* CryptoCurrencyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCurrencyUITests.swift; sourceTree = "<group>"; };
 		E4C54D9329A8AF4C0060F4DB /* CryptoCurrencyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCurrencyUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E4C54DA029A8B0E50060F4DB /* Model */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Model; sourceTree = "<group>"; };
+		E4C54DA429A8B18F0060F4DB /* Network */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Network; sourceTree = "<group>"; };
+		E4C54DA729A8B1CA0060F4DB /* Domain */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Domain; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +57,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4C54DA929A8B1D80060F4DB /* Domain in Frameworks */,
+				E4C54DA329A8B10B0060F4DB /* Model in Frameworks */,
+				E4C54DA629A8B1A10060F4DB /* Network in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,10 +83,14 @@
 		E4C54D6A29A8AF490060F4DB = {
 			isa = PBXGroup;
 			children = (
+				E4C54DA729A8B1CA0060F4DB /* Domain */,
+				E4C54DA429A8B18F0060F4DB /* Network */,
+				E4C54DA029A8B0E50060F4DB /* Model */,
 				E4C54D7529A8AF490060F4DB /* CryptoCurrency */,
 				E4C54D8629A8AF4B0060F4DB /* CryptoCurrencyTests */,
 				E4C54D9029A8AF4C0060F4DB /* CryptoCurrencyUITests */,
 				E4C54D7429A8AF490060F4DB /* Products */,
+				E4C54DA129A8B10B0060F4DB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,6 +140,13 @@
 			path = CryptoCurrencyUITests;
 			sourceTree = "<group>";
 		};
+		E4C54DA129A8B10B0060F4DB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +163,11 @@
 			dependencies = (
 			);
 			name = CryptoCurrency;
+			packageProductDependencies = (
+				E4C54DA229A8B10B0060F4DB /* Model */,
+				E4C54DA529A8B1A10060F4DB /* Network */,
+				E4C54DA829A8B1D80060F4DB /* Domain */,
+			);
 			productName = CryptoCurrency;
 			productReference = E4C54D7329A8AF490060F4DB /* CryptoCurrency.app */;
 			productType = "com.apple.product-type.application";
@@ -591,6 +616,21 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E4C54DA229A8B10B0060F4DB /* Model */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Model;
+		};
+		E4C54DA529A8B1A10060F4DB /* Network */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Network;
+		};
+		E4C54DA829A8B1D80060F4DB /* Domain */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Domain;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E4C54D6B29A8AF490060F4DB /* Project object */;
 }
