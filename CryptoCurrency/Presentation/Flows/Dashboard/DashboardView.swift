@@ -10,6 +10,7 @@ import ShortcutFoundation
 import SwiftUI
 
 struct DashboardView: View {
+    @InjectObject private var vm: DashboardViewModel
     @State private var isPresentingPortfolio = false
 
     var body: some View {

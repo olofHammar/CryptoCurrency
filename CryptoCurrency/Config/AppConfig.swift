@@ -50,6 +50,14 @@ private extension AppConfig {
         injector.map(TabBarViewModel.self) {
             TabBarViewModel()
         }
+
+        injector.map(RootViewModel.self) {
+            RootViewModel()
+        }
+
+        injector.map(DashboardViewModel.self) {
+            DashboardViewModel()
+        }
     }
 }
 

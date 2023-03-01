@@ -5,10 +5,11 @@
 //  Created by Olof Hammar on 2023-02-24.
 //
 
+import ShortcutFoundation
 import SwiftUI
 
 struct RootView: View {
-    @StateObject private var vm = RootViewModel()
+    @InjectObject private var vm: RootViewModel
     
     var body: some View {
         Group {
