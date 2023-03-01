@@ -5,25 +5,20 @@
 //  Created by Olof Hammar on 2023-02-24.
 //
 
+import Navigation
 import ShortcutFoundation
 import SwiftUI
 
 @main
 struct CryptoCurrencyApp: App {
 
-    let context = Context(AppConfig())
+    private let context = Context(AppConfig())
 
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @InjectObject private var navigator: AppNavigator
 
     var body: some Scene {
         WindowGroup {
-            RootView()
+            navigator.rootView
         }
-    }
-}
-
-final class AppDelegate: NSObject, UIApplicationDelegate {
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        return true
     }
 }

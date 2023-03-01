@@ -7,6 +7,7 @@
 
 import Domain
 import Foundation
+import Navigation
 import Network
 import ShortcutFoundation
 
@@ -14,6 +15,7 @@ struct AppConfig: Config {
     func configure(_ injector: ShortcutFoundation.Injector) {
         configureNetworkInjections(injector)
         configureDomainInjections(injector)
+        configureNavigationInjections(injector)
         configureViewModelInjections(injector)
         configurePresentationInjections(injector)
     }
@@ -32,6 +34,12 @@ private extension AppConfig {
         }
     }
 
+    func configureNavigationInjections(_ injector: Injector) {
+        injector.map(AppNavigator.self) {
+            Navigator(root: .root, viewer: AppDestinationViewer())
+        }
+    }
+
     func configurePresentationInjections(_ injector: Injector) {
         injector.map(IFetchAllSupportedCoinsUseCase.self) {
             FetchAllSupportedCoinsUseCase()
@@ -39,6 +47,9 @@ private extension AppConfig {
     }
 
     func configureViewModelInjections(_ injector: Injector) {
+        injector.map(TabBarViewModel.self) {
+            TabBarViewModel()
+        }
     }
 }
 
