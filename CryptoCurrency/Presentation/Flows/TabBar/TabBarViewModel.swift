@@ -39,10 +39,10 @@ extension TabBarViewModel.Tab: Identifiable {
     var asset: String {
         switch self {
         case .dashboard:
-            return "overview"
+            return "Images/overview"
 
         case .profile:
-            return "profile"
+            return "Images/profile"
         }
     }
 }

@@ -11,12 +11,8 @@ struct RootView: View {
     @StateObject private var vm = RootViewModel()
     
     var body: some View {
-        VStack {
-            ScrollView(.vertical, showsIndicators: false) {
-                ForEach(vm.coinsList) { coin in
-                    Text(coin.name)
-                }
-            }
+        Group {
+            TabBarView()
         }
     }
 }

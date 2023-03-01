@@ -22,6 +22,8 @@ struct TabBarView: View {
                     .frame(maxHeight: .infinity)
             }
         }
+        .preferredColorScheme(.dark)
+        .accentColor(.theme.accentColor)
     }
 
     @ViewBuilder

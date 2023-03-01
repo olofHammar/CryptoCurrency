@@ -22,6 +22,8 @@ public class FetchAllSupportedCoinsUseCase: IFetchAllSupportedCoinsUseCase {
 
     public func execute() -> AnyPublisher<[CoinModel], RequestError> {
         coinsRepository.getAllSupportedCoins()
+            .subscribe(on: DispatchQueue.global(qos: .default))
+            .receive(on: RunLoop.main)
             .eraseToAnyPublisher()
     }
 }
