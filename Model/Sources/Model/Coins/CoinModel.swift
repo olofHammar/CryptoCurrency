@@ -115,8 +115,8 @@ public struct SparklineIn7D: Codable {
     let price: [Double]?
 }
 
-extension CoinModel {
-    static var mockCoin: CoinModel {
+public extension CoinModel {
+    public static var mockCoin: CoinModel {
         .init(
             id: "bitcoin",
             symbol: "btc",

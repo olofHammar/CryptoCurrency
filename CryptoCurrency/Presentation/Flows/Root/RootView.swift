@@ -9,7 +9,7 @@ import ShortcutFoundation
 import SwiftUI
 
 struct RootView: View {
-    @InjectObject private var vm: RootViewModel
+//    @InjectObject private var vm: RootViewModel
     
     var body: some View {
         Group {
