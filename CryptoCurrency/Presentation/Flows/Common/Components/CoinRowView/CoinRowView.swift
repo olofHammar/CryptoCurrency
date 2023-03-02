@@ -28,28 +28,22 @@ struct CoinRowView: View {
         .padding(16)
         .background(
             RoundedRectangle(cornerRadius: 8, style: .continuous)
-                .stroke(Color.theme.darkGray, lineWidth: 4)
+                .stroke(Color.theme.backgroundColor, lineWidth: 1)
         )
-        .background(Color.theme.backgroundColor)
+        .background(Color.theme.darkGray)
         .cornerRadius(8, corners: [.allCorners])
-        .shadow(color: .theme.darkGray, radius: 4)
     }
 
     @ViewBuilder
     private func leadingColumn() -> some View {
         HStack(spacing: 0) {
-            Text("\(coin.rank)")
-                .font(.callout)
-                .foregroundColor(Color.theme.lightGray)
-                .frame(minWidth: 16, alignment: .leading)
-
             Circle()
                 .frame(width: 40, height: 40)
 
             Text(coin.symbol.uppercased())
                 .font(.system(size: 18, weight: .semibold))
                 .padding(.leading, 8)
-                .foregroundColor(.theme.secondaryColor)
+                .foregroundColor(.theme.textColor)
         }
     }
 
@@ -67,7 +61,7 @@ struct CoinRowView: View {
         VStack(alignment: .trailing, spacing: 0) {
             Text(coin.currentPrice.asCurrencyWith6Decimals())
                 .bold()
-                .foregroundColor(.theme.accentColor)
+                .foregroundColor(.theme.textColor)
 
             Text(coin.priceChangePercentage24H?.asPercentageString() ?? "")
                 .foregroundColor(
