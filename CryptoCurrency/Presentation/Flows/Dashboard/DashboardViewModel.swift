@@ -13,11 +13,23 @@ import ShortcutFoundation
 
 final class DashboardViewModel: ObservableObject {
     @Inject private var fetchAllSupportedCoinsUseCase: IFetchAllSupportedCoinsUseCase
+
     @Published private(set) var coinsList: [CoinModel] = []
+    @Published private(set) var portfolioCoins: [CoinModel] = []
+
+    @Published var isPresentingPortfolio = false
 
     private var cancellables = Set<AnyCancellable>()
 
     init() {
+        startObservingCoins()
+    }
+
+    func togglePortfolioState() {
+        isPresentingPortfolio.toggle()
+    }
+
+    private func startObservingCoins() {
         fetchAllSupportedCoinsUseCase.execute()
             .receive(on: RunLoop.main)
             .sink { completion in
@@ -31,6 +43,5 @@ final class DashboardViewModel: ObservableObject {
                 self.coinsList = coins
             }
             .store(in: &cancellables)
-
     }
 }

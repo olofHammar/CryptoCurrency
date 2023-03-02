@@ -24,7 +24,11 @@ struct AppConfig: Config {
 private extension AppConfig {
     func configureNetworkInjections(_ injector: Injector) {
         injector.map(ICoinDataSource.self) {
-            CoinDataSource()
+            if shouldFetchStaticData() {
+                return StaticCoinDataSource()
+            } else {
+                return CoinDataSource()
+            }
         }
     }
 

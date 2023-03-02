@@ -6,12 +6,12 @@
 //
 
 import Navigation
+import Model
 import ShortcutFoundation
 import SwiftUI
 
 struct DashboardView: View {
     @InjectObject private var vm: DashboardViewModel
-    @State private var isPresentingPortfolio = false
 
     var body: some View {
         ZStack {
@@ -21,25 +21,32 @@ struct DashboardView: View {
             VStack(spacing: 0) {
                 headerView()
 
+                List {
+                    ForEach(vm.coinsList) { coin in
+                        CoinRowView(coin: coin, isPresentingHoldingsColumn: false)
+                            .modifier(ListRowBackgroundModifier(color: .theme.backgroundColor))
+                    }
+                }
+                .listStyle(PlainListStyle())
+
                 Spacer(minLength: 0)
             }
-            .padding(.horizontal, 16)
         }
     }
 
     @ViewBuilder
     private func headerView() -> some View {
         HStack(spacing: 0) {
-            CircleButtonView(iconName: isPresentingPortfolio ? "plus" : "info")
-                .animation(.none, value: isPresentingPortfolio)
+            CircleButtonView(iconName: vm.isPresentingPortfolio ? "plus" : "info")
+                .animation(.none, value: vm.isPresentingPortfolio)
                 .background(
-                    CircleButtonAnimationView(animate: $isPresentingPortfolio)
+                    CircleButtonAnimationView(animate: $vm.isPresentingPortfolio)
                         .foregroundColor(.theme.lightGray)
                 )
 
             Spacer()
 
-            Text(isPresentingPortfolio ? "Portfolio" : "Live Prices")
+            Text(vm.isPresentingPortfolio ? "Portfolio" : "Live Prices")
                 .font(.system(size: 18, weight: .heavy))
                 .foregroundColor(.theme.textColor)
                 .animation(.none)
@@ -47,10 +54,10 @@ struct DashboardView: View {
             Spacer()
 
             CircleButtonView(iconName: "chevron.right")
-                .rotationEffect(Angle(degrees: isPresentingPortfolio ? 180 : 0))
+                .rotationEffect(Angle(degrees: vm.isPresentingPortfolio ? 180 : 0))
                 .onTapGesture {
                     withAnimation(.spring()) {
-                        isPresentingPortfolio.toggle()
+                        vm.togglePortfolioState()
                     }
                 }
         }

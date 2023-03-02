@@ -116,7 +116,7 @@ public struct SparklineIn7D: Codable {
 }
 
 public extension CoinModel {
-    public static var mockCoin: CoinModel {
+    static var mockCoin: CoinModel {
         .init(
             id: "bitcoin",
             symbol: "btc",
@@ -317,7 +317,7 @@ public extension CoinModel {
                     ]
             ),
             priceChangePercentage24HInCurrency: -2.3096413330420065,
-            currentHoldings: nil
+            currentHoldings: 12
         )
     }
 }

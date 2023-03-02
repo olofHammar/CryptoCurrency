@@ -9,6 +9,21 @@ import Foundation
 
 extension Double {
 
+    private var currencyFormatter2: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.usesGroupingSeparator = true
+        formatter.numberStyle = .currency
+        formatter.minimumFractionDigits = 2
+        formatter.maximumFractionDigits = 2
+
+        return formatter
+    }
+
+    func asCurrencyWith2Decimals() -> String {
+        let number = NSNumber(value: self)
+        return currencyFormatter6.string(from: number) ?? "N/A"
+    }
+
     private var currencyFormatter6: NumberFormatter {
         let formatter = NumberFormatter()
         formatter.usesGroupingSeparator = true
@@ -19,7 +34,7 @@ extension Double {
         return formatter
     }
 
-    func asCurrencyWithDecimals() -> String {
+    func asCurrencyWith6Decimals() -> String {
         let number = NSNumber(value: self)
         return currencyFormatter6.string(from: number) ?? "N/A"
     }
