@@ -37,6 +37,7 @@
 		E4C54DAC29A8DBD10060F4DB /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C54DAB29A8DBD10060F4DB /* AppConfig.swift */; };
 		E4C54DB129A8F9010060F4DB /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C54DB029A8F9010060F4DB /* RootViewModel.swift */; };
 		E4C54DB329A8F9240060F4DB /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C54DB229A8F9240060F4DB /* RootView.swift */; };
+		E4D4826429B6437000716666 /* GlassCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D4826329B6437000716666 /* GlassCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		E4C54DAB29A8DBD10060F4DB /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		E4C54DB029A8F9010060F4DB /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		E4C54DB229A8F9240060F4DB /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		E4D4826329B6437000716666 /* GlassCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +206,7 @@
 				E4140EF329B0FB5B009FFD01 /* CoinImageView */,
 				E48167C229AFB05900BBBB1C /* CoinRowView */,
 				E48167BF29AFA95F00BBBB1C /* CircleButton */,
+				E4D4826329B6437000716666 /* GlassCardView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E48167AD29AF904700BBBB1C /* ProfileView.swift in Sources */,
+				E4D4826429B6437000716666 /* GlassCardView.swift in Sources */,
 				E4140EF529B0FB6D009FFD01 /* CoinImageView.swift in Sources */,
 				E4C54DAC29A8DBD10060F4DB /* AppConfig.swift in Sources */,
 				E4140EF729B0FBA4009FFD01 /* CoinImageViewModel.swift in Sources */,

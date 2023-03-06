@@ -18,6 +18,8 @@ struct ColorTheme {
     let green = Color("Colors/Green")
     let red = Color("Colors/Red")
     let lightGray = Color("Colors/LightGray")
+    let lightGold = Color("Colors/LightGold")
+    let darkGold = Color("Colors/DarkGold")
     let secondaryColor = Color("Colors/SecondaryColor")
     let textColor = Color("Colors/TextWhite")
 }

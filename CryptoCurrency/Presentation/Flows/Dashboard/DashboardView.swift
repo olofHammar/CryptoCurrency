@@ -56,14 +56,14 @@ struct DashboardView: View {
                 .animation(.none, value: vm.isPresentingPortfolio)
                 .background(
                     CircleButtonAnimationView(animate: $vm.isPresentingPortfolio)
-                        .foregroundColor(.theme.lightGray)
+                        .foregroundColor(.theme.darkGold)
                 )
 
             Spacer()
 
             Text(vm.isPresentingPortfolio ? "Portfolio" : "Live Prices")
                 .font(.system(size: 18, weight: .heavy))
-                .foregroundColor(.theme.textColor)
+                .foregroundColor(.theme.lightGold)
                 .animation(.none)
 
             Spacer()
@@ -92,8 +92,9 @@ struct DashboardView: View {
             Text("Price")
                 .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
         }
-        .foregroundColor(.theme.lightGray)
+        .foregroundColor(.theme.textColor)
         .font(.callout)
+        .fontWeight(.semibold)
     }
 
     @ViewBuilder
