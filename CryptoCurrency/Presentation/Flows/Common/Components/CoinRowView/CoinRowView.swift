@@ -25,13 +25,8 @@ struct CoinRowView: View {
             trailingColumn()
                 .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
         }
-        .padding(16)
-        .background(
-            RoundedRectangle(cornerRadius: 8, style: .continuous)
-                .stroke(Color.theme.backgroundColor, lineWidth: 1)
-        )
-        .background(Color.theme.darkGray)
-        .cornerRadius(8, corners: [.allCorners])
+        .padding(24)
+        .modifier(GradientCardModifier(cornerRadius: 4))
     }
 
     @ViewBuilder

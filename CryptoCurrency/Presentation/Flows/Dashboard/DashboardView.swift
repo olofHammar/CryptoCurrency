@@ -56,14 +56,14 @@ struct DashboardView: View {
                 .animation(.none, value: vm.isPresentingPortfolio)
                 .background(
                     CircleButtonAnimationView(animate: $vm.isPresentingPortfolio)
-                        .foregroundColor(.theme.darkGold)
+                        .foregroundColor(.theme.accentColor)
                 )
 
             Spacer()
 
             Text(vm.isPresentingPortfolio ? "Portfolio" : "Live Prices")
                 .font(.system(size: 18, weight: .heavy))
-                .foregroundColor(.theme.lightGold)
+                .foregroundColor(.theme.purpleBlue)
                 .animation(.none)
 
             Spacer()

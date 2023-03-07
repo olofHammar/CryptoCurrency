@@ -13,14 +13,14 @@ struct CircleButtonView: View {
     var body: some View {
         Image(systemName: iconName)
             .font(.headline)
-            .foregroundColor(Color.theme.lightGold)
+            .foregroundColor(Color.theme.textColor)
             .frame(width: 50, height: 50)
             .background(
                 Circle()
                     .foregroundColor(Color.theme.backgroundColor)
             )
             .shadow(
-                color: .theme.darkGray,
+                color: .theme.secondaryBackground,
                 radius: 4, x: 0, y: 0
             )
             .padding()

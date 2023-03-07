@@ -11,6 +11,7 @@
 		E4140EF229B0B766009FFD01 /* ListRowBackgroundModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4140EF129B0B766009FFD01 /* ListRowBackgroundModifier.swift */; };
 		E4140EF529B0FB6D009FFD01 /* CoinImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4140EF429B0FB6D009FFD01 /* CoinImageView.swift */; };
 		E4140EF729B0FBA4009FFD01 /* CoinImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4140EF629B0FBA4009FFD01 /* CoinImageViewModel.swift */; };
+		E45E6E2F29B75F34008AF5CD /* GradientCardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45E6E2E29B75F34008AF5CD /* GradientCardModifier.swift */; };
 		E48167A429AF8AF700BBBB1C /* Navigation in Frameworks */ = {isa = PBXBuildFile; productRef = E48167A329AF8AF700BBBB1C /* Navigation */; };
 		E48167A729AF8FF500BBBB1C /* AppDestinationViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48167A629AF8FF500BBBB1C /* AppDestinationViewer.swift */; };
 		E48167AA29AF903300BBBB1C /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48167A929AF903300BBBB1C /* DashboardView.swift */; };
@@ -37,7 +38,6 @@
 		E4C54DAC29A8DBD10060F4DB /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C54DAB29A8DBD10060F4DB /* AppConfig.swift */; };
 		E4C54DB129A8F9010060F4DB /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C54DB029A8F9010060F4DB /* RootViewModel.swift */; };
 		E4C54DB329A8F9240060F4DB /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C54DB229A8F9240060F4DB /* RootView.swift */; };
-		E4D4826429B6437000716666 /* GlassCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D4826329B6437000716666 /* GlassCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +62,7 @@
 		E4140EF129B0B766009FFD01 /* ListRowBackgroundModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRowBackgroundModifier.swift; sourceTree = "<group>"; };
 		E4140EF429B0FB6D009FFD01 /* CoinImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinImageView.swift; sourceTree = "<group>"; };
 		E4140EF629B0FBA4009FFD01 /* CoinImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinImageViewModel.swift; sourceTree = "<group>"; };
+		E45E6E2E29B75F34008AF5CD /* GradientCardModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientCardModifier.swift; sourceTree = "<group>"; };
 		E48167A229AF8ADA00BBBB1C /* Navigation */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Navigation; sourceTree = "<group>"; };
 		E48167A629AF8FF500BBBB1C /* AppDestinationViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDestinationViewer.swift; sourceTree = "<group>"; };
 		E48167A929AF903300BBBB1C /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -91,7 +92,6 @@
 		E4C54DAB29A8DBD10060F4DB /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		E4C54DB029A8F9010060F4DB /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		E4C54DB229A8F9240060F4DB /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
-		E4D4826329B6437000716666 /* GlassCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				E4140EF129B0B766009FFD01 /* ListRowBackgroundModifier.swift */,
+				E45E6E2E29B75F34008AF5CD /* GradientCardModifier.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -206,7 +207,6 @@
 				E4140EF329B0FB5B009FFD01 /* CoinImageView */,
 				E48167C229AFB05900BBBB1C /* CoinRowView */,
 				E48167BF29AFA95F00BBBB1C /* CircleButton */,
-				E4D4826329B6437000716666 /* GlassCardView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -476,7 +476,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E48167AD29AF904700BBBB1C /* ProfileView.swift in Sources */,
-				E4D4826429B6437000716666 /* GlassCardView.swift in Sources */,
 				E4140EF529B0FB6D009FFD01 /* CoinImageView.swift in Sources */,
 				E4C54DAC29A8DBD10060F4DB /* AppConfig.swift in Sources */,
 				E4140EF729B0FBA4009FFD01 /* CoinImageViewModel.swift in Sources */,
@@ -487,6 +486,7 @@
 				E48167B729AFA0EE00BBBB1C /* DashboardViewModel.swift in Sources */,
 				E4C54DB129A8F9010060F4DB /* RootViewModel.swift in Sources */,
 				E48167AA29AF903300BBBB1C /* DashboardView.swift in Sources */,
+				E45E6E2F29B75F34008AF5CD /* GradientCardModifier.swift in Sources */,
 				E48167C429AFB06B00BBBB1C /* CoinRowView.swift in Sources */,
 				E48167B029AF905E00BBBB1C /* CoinDetailView.swift in Sources */,
 				E4C54D7729A8AF490060F4DB /* CryptoCurrencyApp.swift in Sources */,
