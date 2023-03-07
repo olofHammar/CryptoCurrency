@@ -26,7 +26,7 @@ struct DashboardView: View {
                         ProgressView()
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .background(Color.theme.backgroundColor)
-                    } else                 if vm.isPresentingPortfolio {
+                    } else if vm.isPresentingPortfolio {
                         coinsList(
                             for: vm.portfolioCoins,
                             showsHoldings: true,
@@ -56,14 +56,14 @@ struct DashboardView: View {
                 .animation(.none, value: vm.isPresentingPortfolio)
                 .background(
                     CircleButtonAnimationView(animate: $vm.isPresentingPortfolio)
-                        .foregroundColor(.theme.accentColor)
+                        .foregroundColor(.theme.secondaryColor)
                 )
 
             Spacer()
 
             Text(vm.isPresentingPortfolio ? "Portfolio" : "Live Prices")
                 .font(.system(size: 18, weight: .heavy))
-                .foregroundColor(.theme.purpleBlue)
+                .foregroundColor(.theme.textColor)
                 .animation(.none)
 
             Spacer()
@@ -81,20 +81,19 @@ struct DashboardView: View {
     @ViewBuilder
     private func columnTitles() -> some View {
         HStack(spacing: 0) {
-            Text("Coin")
+            Text("COIN")
 
             Spacer()
 
             if vm.isPresentingPortfolio {
-                Text("Holdings")
+                Text("HOLDINGS")
             }
 
-            Text("Price")
+            Text("PRICE")
                 .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
         }
-        .foregroundColor(.theme.textColor)
-        .font(.callout)
-        .fontWeight(.semibold)
+        .foregroundColor(.theme.lightGray)
+        .font(.system(size: 14, weight: .bold))
     }
 
     @ViewBuilder

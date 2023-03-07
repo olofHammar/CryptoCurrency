@@ -45,7 +45,7 @@ struct GradientCardModifier: ViewModifier {
                     RoundedRectangle(cornerRadius: cornerRadius)
                             .stroke(
                                 .linearGradient(colors: [
-                                    secondaryColor.opacity(0.6),
+                                    secondaryColor.opacity(0.4),
                                     .clear,
                                     .theme.backgroundColor.opacity(0.2),
                                     .theme.backgroundColor.opacity(0.5)
@@ -69,11 +69,14 @@ struct GradientCardModifier: ViewModifier {
 struct GradientCardModifier_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            Text("Example card")
-                .font(.system(size: 18, weight: .semibold))
-                .foregroundColor(.white)
+            VStack {
+                Text("Example card")
+                    .font(.system(size: 18, weight: .semibold))
+                    .foregroundColor(.white)
+            }
+            .frame(maxWidth: .infinity, maxHeight: 250)
+            .modifier(GradientCardModifier())
         }
-        .frame(maxWidth: .infinity, maxHeight: 250)
-        .modifier(GradientCardModifier())
+        .background(Color.theme.backgroundColor)
     }
 }

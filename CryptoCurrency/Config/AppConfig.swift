@@ -48,6 +48,10 @@ private extension AppConfig {
         injector.map(IFetchAllSupportedCoinsUseCase.self) {
             FetchAllSupportedCoinsUseCase()
         }
+
+        injector.map(IFetchCoinImagesUseCase.self) {
+            FetchCoinImageUseCase()
+        }
     }
 
     func configureViewModelInjections(_ injector: Injector) {

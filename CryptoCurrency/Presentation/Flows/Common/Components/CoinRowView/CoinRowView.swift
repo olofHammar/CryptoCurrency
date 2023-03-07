@@ -32,11 +32,11 @@ struct CoinRowView: View {
     @ViewBuilder
     private func leadingColumn() -> some View {
         HStack(spacing: 0) {
-            Circle()
+            CoinImageView(coin: coin)
                 .frame(width: 40, height: 40)
 
             Text(coin.symbol.uppercased())
-                .font(.system(size: 18, weight: .semibold))
+                .font(.system(size: 18, weight: .heavy))
                 .padding(.leading, 8)
                 .foregroundColor(.theme.textColor)
         }
@@ -55,14 +55,15 @@ struct CoinRowView: View {
     private func trailingColumn() -> some View {
         VStack(alignment: .trailing, spacing: 0) {
             Text(coin.currentPrice.asCurrencyWith6Decimals())
-                .bold()
                 .foregroundColor(.theme.textColor)
+                .bold()
 
             Text(coin.priceChangePercentage24H?.asPercentageString() ?? "")
                 .foregroundColor(
                     (coin.priceChangePercentage24H ?? 0) >= 0 ?
                     Color.theme.green : Color.theme.red
                 )
+                .bold()
         }
     }
 }
