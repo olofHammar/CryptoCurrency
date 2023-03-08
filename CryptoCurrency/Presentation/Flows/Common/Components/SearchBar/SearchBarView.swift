@@ -39,7 +39,7 @@ struct SearchBarView: View {
                     ,alignment: .trailing
                 )
         }
-        .font(.headline)
+        .font(.textStyle.smallText)
         .padding(16)
         .background(
             RoundedRectangle(cornerRadius: 24)
@@ -50,6 +50,11 @@ struct SearchBarView: View {
                 )
         )
         .animation(.easeInOut, value: isFocused)
+        .onChange(of: isFocused) { newValue in
+            if !newValue {
+                self.searchText = ""
+            }
+        }
     }
 
     private func setSearchBarToFocus() {

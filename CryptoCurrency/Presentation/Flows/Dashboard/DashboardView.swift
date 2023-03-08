@@ -65,7 +65,8 @@ struct DashboardView: View {
             Spacer()
 
             Text(vm.isPresentingPortfolio ? "Portfolio" : "Live Prices")
-                .font(.system(size: 18, weight: .heavy))
+                .font(.textStyle.mediumText)
+                .fontWeight(.bold)
                 .foregroundColor(.theme.textColor)
                 .animation(.none)
 
@@ -96,7 +97,7 @@ struct DashboardView: View {
                 .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
         }
         .foregroundColor(.theme.lightGray)
-        .font(.system(size: 14, weight: .bold))
+        .font(.textStyle.smallestText)
     }
 
     @ViewBuilder
@@ -106,7 +107,7 @@ struct DashboardView: View {
                 VStack(spacing: 0) {
                     Text("No coins to display")
                         .foregroundColor(.theme.textColor)
-                        .font(.caption)
+                        .font(.textStyle.smallText)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color.theme.backgroundColor)

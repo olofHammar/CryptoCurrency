@@ -14,6 +14,7 @@ import ShortcutFoundation
 final class DashboardViewModel: ObservableObject {
     @Inject private var fetchAllSupportedCoinsUseCase: IFetchAllSupportedCoinsUseCase
 
+    @Published private(set) var allAvailableCoins: [CoinModel] = []
     @Published private(set) var coinsList: [CoinModel] = []
     @Published private(set) var portfolioCoins: [CoinModel] = []
 
@@ -53,7 +54,7 @@ final class DashboardViewModel: ObservableObject {
                     print("Error: \(error.localizedDescription)")
                 }
             } receiveValue: { coins in
-                self.coinsList = coins
+                self.allAvailableCoins = coins
             }
             .store(in: &cancellables)
 
@@ -63,5 +64,26 @@ final class DashboardViewModel: ObservableObject {
             }
             .receive(on: RunLoop.main)
             .assign(to: &$portfolioCoins)
+
+        $searchText
+            .combineLatest($allAvailableCoins)
+            .debounce(for: .seconds(0.3), scheduler: RunLoop.main)
+            .map(filteredCoinsList)
+            .receive(on: RunLoop.main)
+            .assign(to: &$coinsList)
+    }
+
+    private func filteredCoinsList(text: String, coins: [CoinModel]) -> [CoinModel] {
+        guard !text.isEmpty else {
+            return coins
+        }
+
+        let lowecaseText = text.lowercased()
+
+        return coins.filter { (coin) -> Bool in
+            coin.name.lowercased().contains(lowecaseText) ||
+            coin.symbol.lowercased().contains(lowecaseText) ||
+            coin.id.lowercased().contains(lowecaseText)
+        }
     }
 }

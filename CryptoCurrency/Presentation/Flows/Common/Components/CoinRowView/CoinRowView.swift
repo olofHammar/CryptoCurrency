@@ -37,7 +37,8 @@ struct CoinRowView: View {
                 .frame(width: 40, height: 40)
 
             Text(coin.symbol.uppercased())
-                .font(.system(size: 18, weight: .heavy))
+                .font(.textStyle.mediumText)
+                .fontWeight(.heavy)
                 .padding(.leading, 8)
                 .foregroundColor(.theme.textColor)
         }
@@ -50,6 +51,7 @@ struct CoinRowView: View {
             Text((coin.currentHoldings ?? 0).asNumberString())
         }
         .foregroundColor(.theme.lightGray)
+        .font(.textStyle.smallText)
     }
 
     @ViewBuilder
@@ -57,15 +59,14 @@ struct CoinRowView: View {
         VStack(alignment: .trailing, spacing: 0) {
             Text(coin.currentPrice.asCurrencyWith6Decimals())
                 .foregroundColor(.theme.textColor)
-                .bold()
 
             Text(coin.priceChangePercentage24H?.asPercentageString() ?? "")
                 .foregroundColor(
                     (coin.priceChangePercentage24H ?? 0) >= 0 ?
                     Color.theme.green : Color.theme.red
                 )
-                .bold()
         }
+        .font(.textStyle.smallText)
     }
 }
 

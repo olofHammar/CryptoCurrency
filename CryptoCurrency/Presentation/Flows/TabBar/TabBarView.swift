@@ -23,7 +23,7 @@ struct TabBarView: View {
             }
         }
         .preferredColorScheme(.dark)
-        .accentColor(.theme.accentColor)
+        .accentColor(.theme.textColor)
     }
 
     @ViewBuilder
