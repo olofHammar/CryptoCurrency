@@ -20,6 +20,8 @@ final class DashboardViewModel: ObservableObject {
     @Published private(set) var isLoading = false
     @Published var isPresentingPortfolio = false
 
+    @Published var searchText = ""
+
     private var cancellables = Set<AnyCancellable>()
 
     init() {

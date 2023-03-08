@@ -25,7 +25,8 @@ struct CoinRowView: View {
             trailingColumn()
                 .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
         }
-        .padding(24)
+        .padding(.vertical, 24)
+        .padding(.horizontal, 16)
         .modifier(GradientCardModifier(cornerRadius: 4))
     }
 

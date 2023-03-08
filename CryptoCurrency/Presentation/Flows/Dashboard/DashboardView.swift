@@ -21,6 +21,9 @@ struct DashboardView: View {
             VStack(spacing: 0) {
                 headerView()
 
+                SearchBarView(searchText: $vm.searchText)
+                    .padding(16)
+
                 Group {
                     if vm.isLoading {
                         ProgressView()
@@ -97,54 +100,6 @@ struct DashboardView: View {
     }
 
     @ViewBuilder
-    private func allCoinsList() -> some View {
-        if vm.shouldDisplayAllCoinsEmptyState() {
-            VStack(spacing: 0) {
-                Text("No available coins to display")
-                    .foregroundColor(.theme.textColor)
-                    .font(.caption)
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.theme.backgroundColor)
-        } else {
-            VStack(spacing: 0) {
-                List {
-                    ForEach(vm.coinsList) { coin in
-                        CoinRowView(coin: coin, isPresentingHoldingsColumn: false)
-                            .modifier(ListRowBackgroundModifier(color: .theme.backgroundColor))
-                            .listRowSeparator(.hidden)
-                            .listRowInsets(.init(top: 8, leading: 16, bottom: 8, trailing: 16))
-                    }
-                }
-                .listStyle(PlainListStyle())
-            }
-        }
-    }
-
-    @ViewBuilder
-    private func portfolioCoinsList() -> some View {
-        if vm.shouldDisplayPortfolioEmptyState() {
-            VStack(spacing: 0) {
-                Text("Your portfolio is empty")
-                    .foregroundColor(.theme.textColor)
-                    .font(.caption)
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.theme.backgroundColor)
-        } else {
-            List {
-                ForEach(vm.portfolioCoins) { coin in
-                    CoinRowView(coin: coin, isPresentingHoldingsColumn: true)
-                        .modifier(ListRowBackgroundModifier(color: .theme.backgroundColor))
-                        .listRowSeparator(.hidden)
-                        .listRowInsets(.init(top: 8, leading: 16, bottom: 8, trailing: 16))
-                }
-            }
-            .listStyle(PlainListStyle())
-        }
-    }
-
-    @ViewBuilder
     private func coinsList(for list: [CoinModel], showsHoldings: Bool = false, showEmptyState: Bool) -> some View {
         VStack(spacing: 0) {
             if showEmptyState {
@@ -170,6 +125,7 @@ struct DashboardView: View {
                         }
                     }
                     .listStyle(PlainListStyle())
+                    .scrollIndicators(ScrollIndicatorVisibility.hidden)
                 }
             }
         }
