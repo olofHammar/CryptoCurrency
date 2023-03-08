@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CircleButtonView: View {
     let iconName: String
+    let color: Color = .theme.mediumDarkBlue
 
     var body: some View {
         Image(systemName: iconName)
@@ -17,7 +18,7 @@ struct CircleButtonView: View {
             .frame(width: 50, height: 50)
             .background(
                 Circle()
-                    .foregroundColor(Color.theme.backgroundColor)
+                    .foregroundColor(color)
             )
             .shadow(
                 color: .theme.blueShadow,

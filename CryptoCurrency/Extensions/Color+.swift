@@ -20,6 +20,7 @@ struct ColorTheme {
     let red = Color("Colors/Red")
     let lightGray = Color("Colors/LightGray")
     let purpleBlue = Color("Colors/PurpleBlue")
+    let mediumDarkBlue = Color("Colors/MediumDarkBlue")
     let darkBlue = Color("Colors/DarkBlue")
     let secondaryColor = Color("Colors/SecondaryColor")
     let blueShadow = Color("Colors/BlueShadow")

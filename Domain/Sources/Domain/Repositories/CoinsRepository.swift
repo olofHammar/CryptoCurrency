@@ -1,5 +1,5 @@
 //
-//  ICoinsRepository.swift
+//  CoinsRepository.swift
 //  CryptoCurrency
 //
 //  Created by Olof Hammar on 2023-02-24.

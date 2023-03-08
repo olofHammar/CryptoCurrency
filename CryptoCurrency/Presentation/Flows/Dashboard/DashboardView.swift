@@ -17,9 +17,14 @@ struct DashboardView: View {
         ZStack {
             Color.theme.backgroundColor
                 .ignoresSafeArea()
+                .sheet(isPresented: $vm.isPresentingPortfolioSheet) {
+                    PortfolioView(vm: vm)
+                }
 
             VStack(spacing: 0) {
                 headerView()
+
+                DashboardStatsView(showPortfolio: $vm.isPresentingPortfolio, statistics: vm.statistics)
 
                 SearchBarView(searchText: $vm.searchText)
                     .padding(16)
@@ -57,6 +62,7 @@ struct DashboardView: View {
         HStack(spacing: 0) {
             CircleButtonView(iconName: vm.isPresentingPortfolio ? "plus" : "info")
                 .animation(.none, value: vm.isPresentingPortfolio)
+                .onTapGesture { vm.presentPortfolioSheet() }
                 .background(
                     CircleButtonAnimationView(animate: $vm.isPresentingPortfolio)
                         .foregroundColor(.theme.secondaryColor)
@@ -80,6 +86,7 @@ struct DashboardView: View {
                     }
                 }
         }
+        .background(Color.theme.mediumDarkBlue)
     }
 
     @ViewBuilder

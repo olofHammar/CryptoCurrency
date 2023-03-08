@@ -30,11 +30,23 @@ private extension AppConfig {
                 return CoinDataSource()
             }
         }
+
+        injector.map(IMarketDataDataSource.self) {
+            if shouldFetchStaticData() {
+                return StaticMarketDataDataSource()
+            } else {
+                return MarketDataDataSource()
+            }
+        }
     }
 
     func configureDomainInjections(_ injector: Injector) {
         injector.map(ICoinsRepository.self) {
             CoinsRepository()
+        }
+
+        injector.map(IMarketDataRepository.self) {
+            MarketDataRepository()
         }
     }
 
@@ -51,6 +63,10 @@ private extension AppConfig {
 
         injector.map(IFetchCoinImagesUseCase.self) {
             FetchCoinImageUseCase()
+        }
+
+        injector.map(IFetchGlobalMarketDataUseCase.self) {
+            FetchGlobalMarketDataUseCase()
         }
     }
 
