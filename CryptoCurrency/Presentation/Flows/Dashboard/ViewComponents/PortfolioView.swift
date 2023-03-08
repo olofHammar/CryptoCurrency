@@ -5,6 +5,7 @@
 //  Created by Olof Hammar on 2023-03-08.
 //
 
+import Model
 import SwiftUI
 
 struct PortfolioView: View {
@@ -12,13 +13,101 @@ struct PortfolioView: View {
     @ObservedObject var vm: DashboardViewModel
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 0) {
-                Text("Title")
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 32) {
+                    SearchBarView(searchText: $vm.searchText)
+                        .padding(.top, 8)
+
+                    coinIconsList()
+
+                    if let coin = vm.selectedCoin {
+                        portfolioInputSection(for: coin)
+                            .padding(.top, 16)
+                    }
+                }
+                .padding(.horizontal, 16)
             }
             .navigationBarTitle("Edit Portfolio")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: vm.dismissPortfolioSheet) {
+                        Image(systemName: "xmark")
+                    }
+                }
+            }
+            .background(Color.theme.backgroundColor)
+            .foregroundColor(.theme.lightGray)
+            .preferredColorScheme(.dark)
+            .overlay(alignment: .bottomTrailing) {
+                Button(action: { }) {
+                    Text("Save")
+                }
+                .buttonStyle(CapsuleButtonStyle(size: .large, font: .textStyle.mediumText, fullScreenWidth: false))
+                .padding(16)
+            }
         }
-        .navigationBarTitle("Edit Portfolio")
+    }
+
+    @ViewBuilder
+    private func coinIconsList() -> some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            LazyHStack(spacing: 24) {
+                ForEach(vm.allAvailableCoins) { coin in
+                    VStack(spacing: 8) {
+                        CoinIconView(coin: coin)
+                            .frame(width: 50)
+
+                        Rectangle()
+                            .frame(height: 4)
+                            .foregroundColor(vm.isSelectedCoin(coin) ? .theme.textColor : .theme.backgroundColor)
+                    }
+                    .onTapGesture { vm.setSelectedCoin(with: coin) }
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func portfolioInputSection(for coin: CoinModel) -> some View {
+        VStack(alignment: .leading, spacing: 24) {
+            HStack {
+                Text("Current price of \(coin.symbol.uppercased()):")
+
+                Spacer()
+
+                Text(coin.currentPrice.asCurrencyWith6Decimals())
+            }
+
+            Divider()
+                .background(Color.theme.purpleBlue)
+
+            HStack {
+                Text("Amount holding:")
+
+
+                Spacer()
+
+                TextField("Ex: 1.4", text: $vm.quantityText)
+                    .multilineTextAlignment(.trailing)
+                    .keyboardType(.decimalPad)
+            }
+
+            Divider()
+                .background(Color.theme.purpleBlue)
+
+            HStack {
+                Text("Current value:")
+
+                Spacer()
+
+                Text(vm.quantityValue().asCurrencyWith2Decimals())
+            }
+
+        }
+        .animation(.none, value: vm.selectedCoin)
+        .font(.textStyle.mediumText)
+        .foregroundColor(.theme.textColor)
     }
 }
 

@@ -10,6 +10,7 @@ import Domain
 import Foundation
 import Model
 import ShortcutFoundation
+import SwiftUI
 
 final class DashboardViewModel: ObservableObject {
     @Inject private var fetchAllSupportedCoinsUseCase: IFetchAllSupportedCoinsUseCase
@@ -19,12 +20,14 @@ final class DashboardViewModel: ObservableObject {
     @Published private(set) var allAvailableCoins: [CoinModel] = []
     @Published private(set) var coinsList: [CoinModel] = []
     @Published private(set) var portfolioCoins: [CoinModel] = []
+    @Published private(set) var selectedCoin: CoinModel?
 
     @Published private(set) var isLoading = false
     @Published var isPresentingPortfolio = false
     @Published var isPresentingPortfolioSheet = false
 
     @Published var searchText = ""
+    @Published var quantityText = ""
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -46,12 +49,33 @@ final class DashboardViewModel: ObservableObject {
         isPresentingPortfolioSheet = true
     }
 
+    func setSelectedCoin(with coin: CoinModel) {
+        withAnimation(.easeInOut) {
+            self.selectedCoin = coin
+        }
+    }
+
+    func isSelectedCoin(_ coin: CoinModel) -> Bool {
+        self.selectedCoin == coin
+    }
+
+    func dismissPortfolioSheet() {
+        isPresentingPortfolioSheet = false
+    }
+
     func shouldDisplayPortfolioEmptyState() -> Bool {
         portfolioCoins.isEmpty
     }
 
     func shouldDisplayAllCoinsEmptyState() -> Bool {
         coinsList.isEmpty
+    }
+
+    func quantityValue() -> Double {
+        if let quantity = Double(quantityText) {
+            return quantity * (selectedCoin?.currentPrice ?? 0)
+        }
+        return 0
     }
 
     private func startObservingCoins() {
