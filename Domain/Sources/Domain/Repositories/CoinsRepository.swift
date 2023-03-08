@@ -14,11 +14,15 @@ import UIKit
 
 public protocol ICoinsRepository {
     func getAllSupportedCoins() -> AnyPublisher<[CoinModel], RequestError>
-    func getCoinImage(from urlString: String) -> AnyPublisher<UIImage, RequestError>
+    func downloadImage(for coin: CoinModel) -> AnyPublisher<UIImage, RequestError>
+    func getCachedImage(for coin: CoinModel) -> UIImage?
 }
 
 public class CoinsRepository: ICoinsRepository {
     @LazyInject private(set) var coinDataSource: ICoinDataSource
+
+    private let imageCacheManager = ImageCacheManager.instance
+    private let folderName = "coin_images"
 
     public init() { }
 
@@ -38,8 +42,16 @@ public class CoinsRepository: ICoinsRepository {
         .eraseToAnyPublisher()
     }
 
-    public func getCoinImage(from urlString: String) -> AnyPublisher<UIImage, RequestError> {
-        guard let url = URL(string: urlString) else {
+    public func getCachedImage(for coin: CoinModel) -> UIImage? {
+        imageCacheManager.getImage(imageName: coin.id, folderName: folderName)
+    }
+
+    private func saveImageToCache(image: UIImage, imageName: String) {
+        imageCacheManager.saveImage(image, imageName: imageName, folderName: folderName)
+    }
+
+    public func downloadImage(for coin: CoinModel) -> AnyPublisher<UIImage, RequestError> {
+        guard let url = URL(string: coin.image) else {
             return Fail(error: RequestError.invalidURL)
                 .eraseToAnyPublisher()
         }
@@ -56,5 +68,4 @@ public class CoinsRepository: ICoinsRepository {
             }
             .eraseToAnyPublisher()
     }
-
 }

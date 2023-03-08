@@ -27,7 +27,7 @@ final class CoinImageViewModel: ObservableObject {
     }
 
     private func startObservingImage() {
-        fetchCoinImageUseCase.execute(with: coin.image)
+        fetchCoinImageUseCase.execute(with: coin)
             .sink { [weak self] _ in
                 self?.isLoading = false
             } receiveValue: { [weak self] (image) in

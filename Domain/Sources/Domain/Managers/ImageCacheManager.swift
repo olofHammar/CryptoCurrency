@@ -8,13 +8,18 @@
 import Foundation
 import SwiftUI
 
-public class ImageCacheManager {
+public protocol IImageCacheManager {
+    func saveImage(_ image: UIImage, imageName: String, folderName: String)
+    func getImage(imageName: String, folderName: String) -> UIImage?
+}
+
+public class ImageCacheManager: IImageCacheManager {
 
     static let instance = ImageCacheManager()
 
-    private init() { }
+    public init() { }
 
-    func saveImage(_ image: UIImage, imageName: String, folderName: String) {
+    public func saveImage(_ image: UIImage, imageName: String, folderName: String) {
 
         createFolderIfNeeded(folderName: folderName)
 
@@ -25,11 +30,11 @@ public class ImageCacheManager {
         do {
             try data.write(to: url)
         } catch let error {
-            print("Error saving image. \(error)")
+            print("Error saving image. ImageName: \(imageName). \(error)")
         }
     }
 
-    func getImage(imageName: String, folderName: String) -> UIImage? {
+    public func getImage(imageName: String, folderName: String) -> UIImage? {
         guard let url = getURLForImage(with: imageName, from: folderName), FileManager.default.fileExists(atPath: url.path) else {
             return nil
         }

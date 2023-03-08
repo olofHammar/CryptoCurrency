@@ -12,7 +12,7 @@ import ShortcutFoundation
 import UIKit
 
 public protocol IFetchCoinImagesUseCase {
-    func execute(with urlString: String) -> AnyPublisher<UIImage, RequestError>
+    func execute(with coin: CoinModel) -> AnyPublisher<UIImage, RequestError>
 }
 
 public class FetchCoinImageUseCase: IFetchCoinImagesUseCase {
@@ -20,8 +20,14 @@ public class FetchCoinImageUseCase: IFetchCoinImagesUseCase {
 
     public init() { }
 
-    public func execute(with urlString: String) -> AnyPublisher<UIImage, RequestError> {
-        coinsRepository.getCoinImage(from: urlString)
+    public func execute(with coin: CoinModel) -> AnyPublisher<UIImage, RequestError> {
+        if let image = coinsRepository.getCachedImage(for: coin) {
+            return Just(image)
+                .setFailureType(to: RequestError.self)
+                .eraseToAnyPublisher()
+        }
+
+        return coinsRepository.downloadImage(for: coin)
             .subscribe(on: DispatchQueue.global(qos: .default))
             .receive(on: RunLoop.main)
             .eraseToAnyPublisher()
