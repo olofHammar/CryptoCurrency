@@ -89,6 +89,10 @@ private extension AppConfig {
         injector.map(DashboardViewModel.self) {
             DashboardViewModel()
         }
+
+        injector.map(CoinDetailViewModel.self) {
+            CoinDetailViewModel()
+        }
     }
 }
 

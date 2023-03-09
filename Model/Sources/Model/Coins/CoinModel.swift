@@ -6,8 +6,11 @@
 //
 
 import Foundation
+public struct SampleModelTest {
+    public let name: String
+}
 
-public struct CoinModel: Identifiable, Codable, Equatable {
+public struct CoinModel: Identifiable, Codable, Equatable, Hashable {
     public let id: String
     public let symbol: String
     public let name: String
@@ -112,6 +115,10 @@ public struct CoinModel: Identifiable, Codable, Equatable {
 
     public static func == (lhs: CoinModel, rhs: CoinModel) -> Bool {
         lhs.id == rhs.id
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }
 

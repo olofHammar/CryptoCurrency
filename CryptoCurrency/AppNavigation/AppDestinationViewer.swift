@@ -5,6 +5,7 @@
 //  Created by Olof Hammar on 2023-03-01.
 //
 
+import Model
 import Navigation
 import SwiftUI
 
@@ -21,8 +22,8 @@ class AppDestinationViewer: DestinationViewer<Destination> {
         case .profile:
             ProfileView()
 
-        case .coinDetail:
-            CoinDetailView()
+        case .coinDetail(let coin):
+            CoinDetailView(coin: coin)
         }
     }
 }

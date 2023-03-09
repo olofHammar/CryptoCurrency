@@ -56,7 +56,7 @@ struct PortfolioView: View {
     private func coinIconsList() -> some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack(spacing: 0) {
-                ForEach(vm.searchText.isEmpty ? vm.portfolioCoins : vm.coinsList) { coin in
+                ForEach(vm.coinsList) { coin in
                     VStack(spacing: 8) {
                         CoinIconView(coin: coin)
                             .frame(width: 50)

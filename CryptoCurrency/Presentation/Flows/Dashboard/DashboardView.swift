@@ -82,16 +82,49 @@ struct DashboardView: View {
     @ViewBuilder
     private func columnTitles() -> some View {
         HStack(spacing: 0) {
-            Text("COIN")
+            HStack(spacing: 4) {
+                Text("COIN")
+
+                Image(systemName: "chevron.down")
+                    .opacity(vm.isSortedByRank() ? 1 : 0)
+                    .rotationEffect(Angle(degrees: vm.isSortedByRank() ? 0 : 180))
+            }
+            .onTapGesture {
+                withAnimation(.default) {
+                    vm.selectedSortOption = vm.selectedSortOption == .rank ? .rankReversed : .rank
+                }
+            }
 
             Spacer()
 
             if vm.isPresentingPortfolio {
-                Text("HOLDINGS")
+                HStack(spacing: 4) {
+                    Text("HOLDINGS")
+
+                    Image(systemName: "chevron.down")
+                        .opacity(vm.isSortedByHoldings() ? 1 : 0)
+                        .rotationEffect(Angle(degrees: vm.isSortedByHoldings() ? 0 : 180))
+                }
+                .onTapGesture {
+                    withAnimation(.default) {
+                        vm.selectedSortOption = vm.selectedSortOption == .holdings ? .holdingsReversed : .holdings
+                    }
+                }
             }
 
-            Text("PRICE")
-                .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
+            HStack(spacing: 4) {
+                Text("PRICE")
+                    .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
+
+                Image(systemName: "chevron.down")
+                    .opacity(vm.isSortedByPrice() ? 1 : 0)
+                    .rotationEffect(Angle(degrees: vm.isSortedByPrice() ? 0 : 180))
+            }
+            .onTapGesture {
+                withAnimation(.default) {
+                    vm.selectedSortOption = vm.selectedSortOption == .price ? .priceReversed : .price
+                }
+            }
         }
         .foregroundColor(.theme.lightGray)
         .font(.textStyle.smallestText)
@@ -120,10 +153,16 @@ struct DashboardView: View {
                                 .modifier(ListRowBackgroundModifier(color: .theme.backgroundColor))
                                 .listRowSeparator(.hidden)
                                 .listRowInsets(.init(top: 8, leading: 16, bottom: 8, trailing: 16))
+                                .onTapGesture {
+                                    vm.navigateToCoinDetail(with: coin)
+                                }
                         }
                     }
                     .listStyle(PlainListStyle())
                     .scrollIndicators(ScrollIndicatorVisibility.hidden)
+                    .refreshable {
+                        vm.reloadData()
+                    }
                 }
             }
         }
@@ -156,6 +195,9 @@ struct DashboardView: View {
                     }
                     .listStyle(PlainListStyle())
                     .scrollIndicators(ScrollIndicatorVisibility.hidden)
+                    .refreshable {
+                        vm.reloadData()
+                    }
                 }
             }
         }
