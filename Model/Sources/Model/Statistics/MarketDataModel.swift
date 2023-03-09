@@ -46,7 +46,7 @@ public struct MarketDataModel: Codable {
     }
 }
 
-fileprivate extension Double {
+public extension Double {
     func asNumberString() -> String {
         return String(format: "%.2f", self)
     }

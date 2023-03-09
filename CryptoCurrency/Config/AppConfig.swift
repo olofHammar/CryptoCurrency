@@ -69,6 +69,10 @@ private extension AppConfig {
         injector.map(IFetchGlobalMarketDataUseCase.self) {
             FetchGlobalMarketDataUseCase()
         }
+
+        injector.map(IFetchCoinDetailUseCase.self) {
+            FetchCoinDetailUseCase()
+        }
     }
 
     func configureCoreDataInjections(_ injector: Injector) {
@@ -88,10 +92,6 @@ private extension AppConfig {
 
         injector.map(DashboardViewModel.self) {
             DashboardViewModel()
-        }
-
-        injector.map(CoinDetailViewModel.self) {
-            CoinDetailViewModel()
         }
     }
 }

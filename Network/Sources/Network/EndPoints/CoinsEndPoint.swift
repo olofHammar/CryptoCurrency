@@ -18,8 +18,8 @@ extension CoinsEndPoint: Endpoint {
         switch self {
         case .allSupportedCoins:
             return "/api/v3/coins/markets"
-        case .coinDetail:
-            return "/api/v3/coins/"
+        case .coinDetail(let id, _, _, _, _, _, _):
+            return "/api/v3/coins/\(id)"
         }
     }
 
@@ -53,9 +53,8 @@ extension CoinsEndPoint: Endpoint {
                 URLQueryItem(name: "per_page", value: String(itemsPerPage)),
                 URLQueryItem(name: "sparkline", value: String(sparkline))
             ]
-        case .coinDetail(let id, let localization, let tickers, let marketData, let communityData, let developerData, let sparkline):
+        case .coinDetail(_, let localization, let tickers, let marketData, let communityData, let developerData, let sparkline):
             return [
-                URLQueryItem(name: "id", value: id),
                 URLQueryItem(name: "localization", value: String(localization)),
                 URLQueryItem(name: "tickers", value: String(tickers)),
                 URLQueryItem(name: "market_data", value: String(marketData)),

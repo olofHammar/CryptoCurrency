@@ -9,18 +9,63 @@ import Model
 import SwiftUI
 
 struct CoinDetailView: View {
+    @StateObject private var vm: CoinDetailViewModel
 
-    let coin: CoinModel
+    private let columns: [GridItem] = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    private let spacing: CGFloat = 24
 
-    init(coin: CoinModel) {
-        self.coin = coin
-        print("initialising view for \(coin.name)")
+    init(
+        coin: CoinModel
+    ) {
+        _vm = StateObject(wrappedValue: CoinDetailViewModel(coin: coin))
     }
 
     var body: some View {
-        VStack {
-            Text(coin.name)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 0) {
+                Text("")
+                    .frame(height: 150)
+
+                Text("Overview")
+                    .font(.textStyle.largeText)
+                    .bold()
+
+                LazyVGrid(
+                    columns: columns,
+                    alignment: .leading,
+                    spacing: spacing,
+                    pinnedViews: []
+                ) {
+                    ForEach(vm.overviewStatistics) { stat in
+                        StatisticsView(stat: stat)
+                    }
+                }
+                Divider()
+
+                Text("Additional Details")
+                    .font(.textStyle.largeText)
+                    .bold()
+
+                LazyVGrid(
+                    columns: columns,
+                    alignment: .leading,
+                    spacing: spacing,
+                    pinnedViews: []
+                ) {
+                    ForEach(vm.additionalStatistics) { stat in
+                        StatisticsView(stat: stat)
+                    }
+                }
+            }
+            .padding(.horizontal, 16)
+            .foregroundColor(.theme.textColor)
         }
+        .frame(maxWidth: .infinity)
+        .background(Color.theme.backgroundColor)
+        .navigationTitle(vm.coin.name)
     }
 }
 
