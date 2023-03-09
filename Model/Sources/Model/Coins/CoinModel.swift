@@ -6,9 +6,6 @@
 //
 
 import Foundation
-public struct SampleModelTest {
-    public let name: String
-}
 
 public struct CoinModel: Identifiable, Codable, Equatable, Hashable {
     public let id: String
