@@ -16,8 +16,9 @@ struct AppConfig: Config {
         configureNetworkInjections(injector)
         configureDomainInjections(injector)
         configureNavigationInjections(injector)
-        configureViewModelInjections(injector)
         configurePresentationInjections(injector)
+        configureCoreDataInjections(injector)
+        configureViewModelInjections(injector)
     }
 }
 
@@ -67,6 +68,12 @@ private extension AppConfig {
 
         injector.map(IFetchGlobalMarketDataUseCase.self) {
             FetchGlobalMarketDataUseCase()
+        }
+    }
+
+    func configureCoreDataInjections(_ injector: Injector) {
+        injector.map(PortfolioDataService.self) {
+            PortfolioDataService()
         }
     }
 

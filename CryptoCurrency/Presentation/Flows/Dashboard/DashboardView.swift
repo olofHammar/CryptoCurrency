@@ -17,9 +17,6 @@ struct DashboardView: View {
         ZStack {
             Color.theme.backgroundColor
                 .ignoresSafeArea()
-                .sheet(isPresented: $vm.isPresentingPortfolioSheet) {
-                    PortfolioView(vm: vm)
-                }
 
             VStack(spacing: 0) {
                 headerView()
@@ -29,30 +26,23 @@ struct DashboardView: View {
                 SearchBarView(searchText: $vm.searchText)
                     .padding(16)
 
-                Group {
-                    if vm.isLoading {
-                        ProgressView()
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .background(Color.theme.backgroundColor)
-                    } else if vm.isPresentingPortfolio {
-                        coinsList(
-                            for: vm.portfolioCoins,
-                            showsHoldings: true,
-                            showEmptyState: vm.shouldDisplayPortfolioEmptyState()
-                        )
+                if vm.isLoading {
+                    ProgressView()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color.theme.backgroundColor)
+                } else if vm.isPresentingPortfolio {
+                    portfolioList()
                         .transition(.move(edge: .trailing))
 
-                    } else {
-                        coinsList(
-                            for: vm.coinsList,
-                            showsHoldings: false,
-                            showEmptyState: vm.shouldDisplayAllCoinsEmptyState()
-                        )
+                } else {
+                    allCoinsList()
                         .transition(.move(edge: .leading))
-                    }
                 }
 
                 Spacer(minLength: 0)
+            }
+            .sheet(isPresented: $vm.isPresentingPortfolioSheet) {
+                PortfolioView(vm: vm)
             }
         }
     }
@@ -108,9 +98,9 @@ struct DashboardView: View {
     }
 
     @ViewBuilder
-    private func coinsList(for list: [CoinModel], showsHoldings: Bool = false, showEmptyState: Bool) -> some View {
+    private func allCoinsList() -> some View {
         VStack(spacing: 0) {
-            if showEmptyState {
+            if vm.shouldDisplayAllCoinsEmptyState() {
                 VStack(spacing: 0) {
                     Text("No coins to display")
                         .foregroundColor(.theme.textColor)
@@ -125,8 +115,40 @@ struct DashboardView: View {
                         .padding(.bottom, 8)
 
                     List {
-                        ForEach(list) { coin in
-                            CoinRowView(coin: coin, isPresentingHoldingsColumn: showsHoldings)
+                        ForEach(vm.coinsList) { coin in
+                            CoinRowView(coin: coin, isPresentingHoldingsColumn: false)
+                                .modifier(ListRowBackgroundModifier(color: .theme.backgroundColor))
+                                .listRowSeparator(.hidden)
+                                .listRowInsets(.init(top: 8, leading: 16, bottom: 8, trailing: 16))
+                        }
+                    }
+                    .listStyle(PlainListStyle())
+                    .scrollIndicators(ScrollIndicatorVisibility.hidden)
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func portfolioList() -> some View {
+        VStack(spacing: 0) {
+            if vm.shouldDisplayPortfolioEmptyState() {
+                VStack(spacing: 0) {
+                    Text("Your portfolio is empty")
+                        .foregroundColor(.theme.textColor)
+                        .font(.textStyle.smallText)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color.theme.backgroundColor)
+            } else {
+                VStack(spacing: 0) {
+                    columnTitles()
+                        .padding(.horizontal, 32)
+                        .padding(.bottom, 8)
+
+                    List {
+                        ForEach(vm.portfolioCoins) { coin in
+                            CoinRowView(coin: coin, holdings: coin.currentHoldings, isPresentingHoldingsColumn: true)
                                 .modifier(ListRowBackgroundModifier(color: .theme.backgroundColor))
                                 .listRowSeparator(.hidden)
                                 .listRowInsets(.init(top: 8, leading: 16, bottom: 8, trailing: 16))

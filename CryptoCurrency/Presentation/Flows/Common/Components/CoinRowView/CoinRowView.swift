@@ -10,7 +10,19 @@ import SwiftUI
 
 struct CoinRowView: View {
     let coin: CoinModel
+    let holdings: Double?
     let isPresentingHoldingsColumn: Bool
+
+
+    init(
+        coin: CoinModel,
+        holdings: Double? = nil,
+        isPresentingHoldingsColumn: Bool = false
+    ) {
+        self.coin = coin
+        self.holdings = holdings
+        self.isPresentingHoldingsColumn = isPresentingHoldingsColumn
+    }
 
     var body: some View {
         HStack(spacing: 0) {
@@ -72,6 +84,6 @@ struct CoinRowView: View {
 
 struct CoinRowView_Previews: PreviewProvider {
     static var previews: some View {
-        CoinRowView(coin: CoinModel.mockCoin, isPresentingHoldingsColumn: true)
+        CoinRowView(coin: CoinModel.mockCoin, holdings: nil, isPresentingHoldingsColumn: true)
     }
 }

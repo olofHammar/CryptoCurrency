@@ -13,6 +13,7 @@ import ShortcutFoundation
 import SwiftUI
 
 final class DashboardViewModel: ObservableObject {
+    @Inject var portfolioDataService: PortfolioDataService
     @Inject private var fetchAllSupportedCoinsUseCase: IFetchAllSupportedCoinsUseCase
     @Inject private var fetchGlobalMarketDataUseCase: IFetchGlobalMarketDataUseCase
 
@@ -25,6 +26,7 @@ final class DashboardViewModel: ObservableObject {
     @Published private(set) var isLoading = false
     @Published var isPresentingPortfolio = false
     @Published var isPresentingPortfolioSheet = false
+    @Published var shouldPresentSavePortfolioButton = false
 
     @Published var searchText = ""
     @Published var quantityText = ""
@@ -35,6 +37,7 @@ final class DashboardViewModel: ObservableObject {
         isLoading = true
         startObservingCoins()
         startObservingMarketData()
+        startObservingViewStates()
     }
 
     func togglePortfolioState() {
@@ -52,11 +55,18 @@ final class DashboardViewModel: ObservableObject {
     func setSelectedCoin(with coin: CoinModel) {
         withAnimation(.easeInOut) {
             self.selectedCoin = coin
+
+            if let portfolioCoin = portfolioCoins.first(where: { $0.id == coin.id }), let amount = portfolioCoin.currentHoldings {
+                quantityText = "\(amount)"
+            } else {
+                quantityText = ""
+            }
         }
     }
 
     func resetSelectedCoin() {
         selectedCoin = nil
+        quantityText = ""
     }
 
     func isSelectedCoin(_ coin: CoinModel) -> Bool {
@@ -64,6 +74,7 @@ final class DashboardViewModel: ObservableObject {
     }
 
     func dismissPortfolioSheet() {
+        resetSelectedCoin()
         isPresentingPortfolioSheet = false
     }
 
@@ -82,6 +93,21 @@ final class DashboardViewModel: ObservableObject {
         return 0
     }
 
+    func updatePortfolio(coin: CoinModel, amount: Double) {
+        portfolioDataService.updatePortfolio(coin: coin, amount: amount)
+    }
+
+    func savePortfolioData() {
+        guard let coin = selectedCoin, let amount = Double(quantityText) else {
+            return
+        }
+        updatePortfolio(coin: coin, amount: amount)
+
+        withAnimation(.easeIn) {
+            resetSelectedCoin()
+        }
+    }
+
     private func startObservingCoins() {
         fetchAllSupportedCoinsUseCase.execute()
             .receive(on: RunLoop.main)
@@ -98,19 +124,26 @@ final class DashboardViewModel: ObservableObject {
             }
             .store(in: &cancellables)
 
-        $coinsList
-            .map { coinList -> [CoinModel] in
-                coinList.filter { $0.currentHoldings != nil }
-            }
-            .receive(on: RunLoop.main)
-            .assign(to: &$portfolioCoins)
-
         $searchText
             .combineLatest($allAvailableCoins)
             .debounce(for: .seconds(0.3), scheduler: RunLoop.main)
             .map(filteredCoinsList)
             .receive(on: RunLoop.main)
             .assign(to: &$coinsList)
+
+        $coinsList
+            .combineLatest(portfolioDataService.$savedEntities)
+            .map { (coinModels, portfolioEntites) -> [CoinModel] in
+                coinModels.compactMap { (coin) -> CoinModel? in
+                    guard let entity = portfolioEntites.first(where: { $0.coinID == coin.id }) else {
+                        return nil
+                    }
+
+                    return coin.updateHoldings(amount: entity.amount)
+                }
+            }
+            .receive(on: RunLoop.main)
+            .assign(to: &$portfolioCoins)
     }
 
     private func startObservingMarketData() {
@@ -129,6 +162,14 @@ final class DashboardViewModel: ObservableObject {
             }
             .store(in: &cancellables)
 
+    }
+
+    private func startObservingViewStates() {
+        $selectedCoin
+            .combineLatest($quantityText)
+            .compactMap(validatePortfolioSaveState)
+            .receive(on: RunLoop.main)
+            .assign(to: &$shouldPresentSavePortfolioButton)
     }
 
     private func filteredCoinsList(text: String, coins: [CoinModel]) -> [CoinModel] {
@@ -160,5 +201,9 @@ final class DashboardViewModel: ObservableObject {
         stats.append(contentsOf: [marketCap, volume, btcDominance, portfolio])
 
         return stats
+    }
+
+    private func validatePortfolioSaveState(coin: CoinModel?, text: String) -> Bool {
+        coin != nil && !text.isEmpty
     }
 }
