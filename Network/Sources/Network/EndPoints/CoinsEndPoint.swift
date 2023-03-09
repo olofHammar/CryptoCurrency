@@ -10,6 +10,7 @@ import Model
 
 public enum CoinsEndPoint {
     case allSupportedCoins(currency: CurrencyIdentifier, order: Order, itemsPerPage: Int, sparkline: Bool)
+    case coinDetail(id: String, localization: Bool, tickers: Bool, marketData: Bool, communityData: Bool, developerData: Bool, sparkline: Bool)
 }
 
 extension CoinsEndPoint: Endpoint {
@@ -17,26 +18,28 @@ extension CoinsEndPoint: Endpoint {
         switch self {
         case .allSupportedCoins:
             return "/api/v3/coins/markets"
+        case .coinDetail:
+            return "/api/v3/coins/"
         }
     }
 
     public var method: RequestMethod {
         switch self {
-        case .allSupportedCoins:
+        case .allSupportedCoins, .coinDetail:
             return .get
         }
     }
 
     public var header: [String: String]? {
         switch self {
-        case .allSupportedCoins:
+        case .allSupportedCoins, .coinDetail:
             return nil
         }
     }
 
     public var body: [String: String]? {
         switch self {
-        case .allSupportedCoins:
+        case .allSupportedCoins, .coinDetail:
             return nil
         }
     }
@@ -48,6 +51,16 @@ extension CoinsEndPoint: Endpoint {
                 URLQueryItem(name: "vs_currency", value: currency.rawValue),
                 URLQueryItem(name: "order", value: order.rawValue),
                 URLQueryItem(name: "per_page", value: String(itemsPerPage)),
+                URLQueryItem(name: "sparkline", value: String(sparkline))
+            ]
+        case .coinDetail(let id, let localization, let tickers, let marketData, let communityData, let developerData, let sparkline):
+            return [
+                URLQueryItem(name: "id", value: id),
+                URLQueryItem(name: "localization", value: String(localization)),
+                URLQueryItem(name: "tickers", value: String(tickers)),
+                URLQueryItem(name: "market_data", value: String(marketData)),
+                URLQueryItem(name: "community_data", value: String(communityData)),
+                URLQueryItem(name: "developer_data", value: String(developerData)),
                 URLQueryItem(name: "sparkline", value: String(sparkline))
             ]
         }
@@ -66,8 +79,3 @@ extension CoinsEndPoint {
         case idAsc = "id_asc"
     }
 }
-
-/*
-
- https://api.coingecko.com/api/v3/coins/bitcoin?localization=false&tickers=false&market_data=false&community_data=false&developer_data=false&sparkline=false
- */

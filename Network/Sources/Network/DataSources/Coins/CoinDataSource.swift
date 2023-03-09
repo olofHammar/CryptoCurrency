@@ -15,8 +15,28 @@ public struct CoinDataSource: HTTPClient, ICoinDataSource {
 
     public func getAllSupportedCoins() async -> Result<[CoinModel], RequestError> {
         return await sendRequest(
-            endpoint: CoinsEndPoint.allSupportedCoins(currency: .sek, order: .marketCapDesc, itemsPerPage: 250, sparkline: true),
+            endpoint: CoinsEndPoint.allSupportedCoins(
+                currency: .sek,
+                order: .marketCapDesc,
+                itemsPerPage: 250,
+                sparkline: true
+            ),
             responseModel: [CoinModel].self
+        )
+    }
+
+    public func getCoinDetail(for coinID: String) async -> Result<CoinDetailModel, RequestError> {
+        return await sendRequest(
+            endpoint: CoinsEndPoint.coinDetail(
+                id: coinID,
+                localization: false,
+                tickers: false,
+                marketData: false,
+                communityData: false,
+                developerData: false,
+                sparkline: false
+            ),
+            responseModel: CoinDetailModel.self
         )
     }
 }

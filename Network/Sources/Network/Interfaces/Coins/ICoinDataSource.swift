@@ -10,4 +10,5 @@ import Model
 
 public protocol ICoinDataSource {
     func getAllSupportedCoins() async -> Result<[CoinModel], RequestError>
+    func getCoinDetail(for coinID: String) async -> Result<CoinDetailModel, RequestError>
 }

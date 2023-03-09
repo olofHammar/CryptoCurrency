@@ -14,6 +14,7 @@ import UIKit
 
 public protocol ICoinsRepository {
     func getAllSupportedCoins() -> AnyPublisher<[CoinModel], RequestError>
+    func getCoinDetail(for coinID: String) -> AnyPublisher<CoinDetailModel, RequestError>
     func downloadImage(for coin: CoinModel) -> AnyPublisher<UIImage, RequestError>
     func getCachedImage(for coin: CoinModel) -> UIImage?
 }
@@ -34,6 +35,22 @@ public class CoinsRepository: ICoinsRepository {
                 switch result {
                 case .success(let coins):
                     promise(.success(coins))
+                case .failure(let error):
+                    promise(.failure(error))
+                }
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+
+    public func getCoinDetail(for coinID: String) -> AnyPublisher<CoinDetailModel, RequestError> {
+        return Future { promise in
+            Task {
+                let result = await self.coinDataSource.getCoinDetail(for: coinID)
+
+                switch result {
+                case .success(let coin):
+                    promise(.success(coin))
                 case .failure(let error):
                     promise(.failure(error))
                 }
