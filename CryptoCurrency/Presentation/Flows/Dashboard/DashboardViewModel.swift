@@ -55,6 +55,10 @@ final class DashboardViewModel: ObservableObject {
         }
     }
 
+    func resetSelectedCoin() {
+        selectedCoin = nil
+    }
+
     func isSelectedCoin(_ coin: CoinModel) -> Bool {
         self.selectedCoin == coin
     }

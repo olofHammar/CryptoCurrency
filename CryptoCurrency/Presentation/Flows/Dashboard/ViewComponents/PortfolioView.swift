@@ -15,7 +15,7 @@ struct PortfolioView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(alignment: .leading, spacing: 32) {
+                VStack(alignment: .leading, spacing: 24) {
                     SearchBarView(searchText: $vm.searchText)
                         .padding(.top, 8)
 
@@ -23,46 +23,53 @@ struct PortfolioView: View {
 
                     if let coin = vm.selectedCoin {
                         portfolioInputSection(for: coin)
-                            .padding(.top, 16)
+                            .padding(.top, 8)
                     }
                 }
                 .padding(.horizontal, 16)
             }
             .navigationBarTitle("Edit Portfolio")
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: vm.dismissPortfolioSheet) {
                         Image(systemName: "xmark")
                     }
                 }
+
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    savePortfolioButton()
+                }
             }
             .background(Color.theme.backgroundColor)
             .foregroundColor(.theme.lightGray)
-            .preferredColorScheme(.dark)
-            .overlay(alignment: .bottomTrailing) {
-                Button(action: { }) {
-                    Text("Save")
+            .onChange(of: vm.searchText) { value in
+                if value.isEmpty {
+                    vm.resetSelectedCoin()
                 }
-                .buttonStyle(CapsuleButtonStyle(size: .large, font: .textStyle.mediumText, fullScreenWidth: false))
-                .padding(16)
             }
         }
     }
 
     @ViewBuilder
     private func coinIconsList() -> some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            LazyHStack(spacing: 24) {
-                ForEach(vm.allAvailableCoins) { coin in
-                    VStack(spacing: 8) {
-                        CoinIconView(coin: coin)
-                            .frame(width: 50)
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Select coin".uppercased())
+                .font(.textStyle.smallestText)
+                .bold()
 
-                        Rectangle()
-                            .frame(height: 4)
-                            .foregroundColor(vm.isSelectedCoin(coin) ? .theme.textColor : .theme.backgroundColor)
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHStack(spacing: 24) {
+                    ForEach(vm.coinsList) { coin in
+                        VStack(spacing: 8) {
+                            CoinIconView(coin: coin)
+                                .frame(width: 50)
+
+                            Rectangle()
+                                .frame(height: 4)
+                                .foregroundColor(vm.isSelectedCoin(coin) ? .theme.textColor : .theme.backgroundColor)
+                        }
+                        .onTapGesture { vm.setSelectedCoin(with: coin) }
                     }
-                    .onTapGesture { vm.setSelectedCoin(with: coin) }
                 }
             }
         }
@@ -71,6 +78,10 @@ struct PortfolioView: View {
     @ViewBuilder
     private func portfolioInputSection(for coin: CoinModel) -> some View {
         VStack(alignment: .leading, spacing: 24) {
+            Rectangle()
+                .frame(height: 2)
+                .foregroundColor(Color.theme.blueShadow)
+
             HStack {
                 Text("Current price of \(coin.symbol.uppercased()):")
 
@@ -79,8 +90,9 @@ struct PortfolioView: View {
                 Text(coin.currentPrice.asCurrencyWith6Decimals())
             }
 
-            Divider()
-                .background(Color.theme.purpleBlue)
+            Rectangle()
+                .frame(height: 2)
+                .foregroundColor(Color.theme.blueShadow)
 
             HStack {
                 Text("Amount holding:")
@@ -93,8 +105,9 @@ struct PortfolioView: View {
                     .keyboardType(.decimalPad)
             }
 
-            Divider()
-                .background(Color.theme.purpleBlue)
+            Rectangle()
+                .frame(height: 2)
+                .foregroundColor(Color.theme.blueShadow)
 
             HStack {
                 Text("Current value:")
@@ -108,6 +121,15 @@ struct PortfolioView: View {
         .animation(.none, value: vm.selectedCoin)
         .font(.textStyle.mediumText)
         .foregroundColor(.theme.textColor)
+    }
+
+    @ViewBuilder
+    private func savePortfolioButton() -> some View {
+        Button(action: { }) {
+            Text("Save")
+                .font(.textStyle.mediumText)
+                .foregroundColor(.theme.textColor)
+        }
     }
 }
 
