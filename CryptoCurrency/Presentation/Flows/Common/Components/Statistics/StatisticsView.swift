@@ -18,26 +18,25 @@ struct StatisticsView: View {
                 .font(.textStyle.smallText)
                 .foregroundColor(.theme.lightGray)
                 .lineLimit(1)
-                .minimumScaleFactor(0.5)
+                .minimumScaleFactor(0.8)
 
             Text(stat.value)
                 .font(.textStyle.mediumText)
                 .lineLimit(1)
-                .minimumScaleFactor(0.5)
+                .minimumScaleFactor(0.8)
 
             HStack(spacing: 4) {
                 Image(systemName: "triangle.fill")
                     .font(.textStyle.smallText)
                     .rotationEffect(Angle(degrees: (stat.percetageChange ?? 0) >= 0 ? 0 : 180))
 
-                Text(stat.percetageChange?.asPercentageString() ?? "0")
+                Text(stat.percetageChange?.asPercentageString() ?? "")
                     .font(.textStyle.smallestText)
                     .bold()
             }
             .foregroundColor((stat.percetageChange ?? 0) >= 0 ? Color.theme.green : Color.theme.red)
             .opacity(stat.percetageChange == nil ? 0 : 1)
         }
-        .frame(width: UIScreen.main.bounds.width / 5)
         .foregroundColor(.theme.textColor)
         .padding(16)
     }

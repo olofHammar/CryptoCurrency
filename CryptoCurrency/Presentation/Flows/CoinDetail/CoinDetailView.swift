@@ -11,11 +11,7 @@ import SwiftUI
 struct CoinDetailView: View {
     @StateObject private var vm: CoinDetailViewModel
 
-    private let columns: [GridItem] = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
-    private let spacing: CGFloat = 24
+    private let columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
 
     init(
         coin: CoinModel
@@ -29,36 +25,10 @@ struct CoinDetailView: View {
                 Text("")
                     .frame(height: 150)
 
-                Text("Overview")
-                    .font(.textStyle.largeText)
-                    .bold()
+                statisticsGridView(title: "Overview", stats: vm.overviewStatistics)
 
-                LazyVGrid(
-                    columns: columns,
-                    alignment: .leading,
-                    spacing: spacing,
-                    pinnedViews: []
-                ) {
-                    ForEach(vm.overviewStatistics) { stat in
-                        StatisticsView(stat: stat)
-                    }
-                }
-                Divider()
+                statisticsGridView(title: "Additional Details", stats: vm.additionalStatistics)
 
-                Text("Additional Details")
-                    .font(.textStyle.largeText)
-                    .bold()
-
-                LazyVGrid(
-                    columns: columns,
-                    alignment: .leading,
-                    spacing: spacing,
-                    pinnedViews: []
-                ) {
-                    ForEach(vm.additionalStatistics) { stat in
-                        StatisticsView(stat: stat)
-                    }
-                }
             }
             .padding(.horizontal, 16)
             .foregroundColor(.theme.textColor)
@@ -66,6 +36,22 @@ struct CoinDetailView: View {
         .frame(maxWidth: .infinity)
         .background(Color.theme.backgroundColor)
         .navigationTitle(vm.coin.name)
+    }
+
+    @ViewBuilder
+    private func statisticsGridView(title: String, stats: [StatisticsModel]) -> some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text(title)
+                .font(.textStyle.mediumText)
+                .bold()
+
+            LazyVGrid(columns: columns, alignment: .leading, spacing: 0) {
+                ForEach(stats) { stat in
+                    StatisticsView(stat: stat)
+                }
+            }
+        }
+
     }
 }
 
