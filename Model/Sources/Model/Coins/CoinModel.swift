@@ -120,7 +120,7 @@ public struct CoinModel: Identifiable, Codable, Equatable, Hashable {
 }
 
 public struct SparklineIn7D: Codable {
-    let price: [Double]?
+    public let price: [Double]?
 }
 
 public extension CoinModel {

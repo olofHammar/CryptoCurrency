@@ -19,6 +19,7 @@ struct CryptoCurrencyApp: App {
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor : UIColor(Color.theme.textColor)]
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor : UIColor(Color.theme.textColor)]
+        UINavigationBar.appearance().tintColor = UIColor(Color.theme.textColor)
     }
 
     var body: some Scene {

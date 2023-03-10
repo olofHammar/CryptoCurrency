@@ -25,6 +25,9 @@
 		E48167C129AFA97600BBBB1C /* CircleButtonAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48167C029AFA97600BBBB1C /* CircleButtonAnimationView.swift */; };
 		E48167C429AFB06B00BBBB1C /* CoinRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48167C329AFB06B00BBBB1C /* CoinRowView.swift */; };
 		E48167C629AFB22D00BBBB1C /* Double+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48167C529AFB22D00BBBB1C /* Double+Formatter.swift */; };
+		E4AE57ED29BB245600A5F67D /* ChartViewiOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AE57EC29BB245600A5F67D /* ChartViewiOS.swift */; };
+		E4AE57F029BB58A100A5F67D /* CustomChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AE57EF29BB58A100A5F67D /* CustomChartView.swift */; };
+		E4AE57F229BB619700A5F67D /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AE57F129BB619700A5F67D /* Date+.swift */; };
 		E4B2314A29B87DDC00F10229 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B2314929B87DDC00F10229 /* SearchBarView.swift */; };
 		E4B2314C29B8824E00F10229 /* TextField+Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B2314B29B8824E00F10229 /* TextField+Placeholder.swift */; };
 		E4B2314E29B886D800F10229 /* UIApplication+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B2314D29B886D800F10229 /* UIApplication+Keyboard.swift */; };
@@ -88,6 +91,9 @@
 		E48167C029AFA97600BBBB1C /* CircleButtonAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonAnimationView.swift; sourceTree = "<group>"; };
 		E48167C329AFB06B00BBBB1C /* CoinRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRowView.swift; sourceTree = "<group>"; };
 		E48167C529AFB22D00BBBB1C /* Double+Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Formatter.swift"; sourceTree = "<group>"; };
+		E4AE57EC29BB245600A5F67D /* ChartViewiOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewiOS.swift; sourceTree = "<group>"; };
+		E4AE57EF29BB58A100A5F67D /* CustomChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomChartView.swift; sourceTree = "<group>"; };
+		E4AE57F129BB619700A5F67D /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		E4B2314929B87DDC00F10229 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		E4B2314B29B8824E00F10229 /* TextField+Placeholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+Placeholder.swift"; sourceTree = "<group>"; };
 		E4B2314D29B886D800F10229 /* UIApplication+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Keyboard.swift"; sourceTree = "<group>"; };
@@ -195,6 +201,7 @@
 		E48167AE29AF904C00BBBB1C /* CoinDetail */ = {
 			isa = PBXGroup;
 			children = (
+				E4AE57EB29BB244200A5F67D /* ViewComponents */,
 				E48167AF29AF905E00BBBB1C /* CoinDetailView.swift */,
 				E4E196AD29BA0D1D00A467ED /* CoinDetailViewModel.swift */,
 			);
@@ -219,6 +226,7 @@
 				E4B2314B29B8824E00F10229 /* TextField+Placeholder.swift */,
 				E4140EEE29B0ADFA009FFD01 /* View+CustomCorners.swift */,
 				E4B2314D29B886D800F10229 /* UIApplication+Keyboard.swift */,
+				E4AE57F129BB619700A5F67D /* Date+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -258,6 +266,23 @@
 				E48167C329AFB06B00BBBB1C /* CoinRowView.swift */,
 			);
 			path = CoinRowView;
+			sourceTree = "<group>";
+		};
+		E4AE57EB29BB244200A5F67D /* ViewComponents */ = {
+			isa = PBXGroup;
+			children = (
+				E4AE57EE29BB57E400A5F67D /* Charts */,
+			);
+			path = ViewComponents;
+			sourceTree = "<group>";
+		};
+		E4AE57EE29BB57E400A5F67D /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				E4AE57EC29BB245600A5F67D /* ChartViewiOS.swift */,
+				E4AE57EF29BB58A100A5F67D /* CustomChartView.swift */,
+			);
+			path = Charts;
 			sourceTree = "<group>";
 		};
 		E4B2314829B87DBB00F10229 /* SearchBar */ = {
@@ -554,7 +579,9 @@
 				E48167AD29AF904700BBBB1C /* ProfileView.swift in Sources */,
 				E4140EF529B0FB6D009FFD01 /* CoinImageView.swift in Sources */,
 				E4B2315829B8D4BA00F10229 /* PortfolioView.swift in Sources */,
+				E4AE57ED29BB245600A5F67D /* ChartViewiOS.swift in Sources */,
 				E4C54DAC29A8DBD10060F4DB /* AppConfig.swift in Sources */,
+				E4AE57F229BB619700A5F67D /* Date+.swift in Sources */,
 				E4B2315A29B8D9F800F10229 /* CoinIconView.swift in Sources */,
 				E4140EF729B0FBA4009FFD01 /* CoinImageViewModel.swift in Sources */,
 				E4B2315329B89A1200F10229 /* StatisticsView.swift in Sources */,
@@ -570,6 +597,7 @@
 				E4C54DB129A8F9010060F4DB /* RootViewModel.swift in Sources */,
 				E48167AA29AF903300BBBB1C /* DashboardView.swift in Sources */,
 				E45E6E2F29B75F34008AF5CD /* GradientCardModifier.swift in Sources */,
+				E4AE57F029BB58A100A5F67D /* CustomChartView.swift in Sources */,
 				E4B2314C29B8824E00F10229 /* TextField+Placeholder.swift in Sources */,
 				E48167C429AFB06B00BBBB1C /* CoinRowView.swift in Sources */,
 				E4B2314E29B886D800F10229 /* UIApplication+Keyboard.swift in Sources */,

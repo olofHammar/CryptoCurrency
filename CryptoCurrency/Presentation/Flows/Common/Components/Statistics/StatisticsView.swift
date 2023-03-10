@@ -10,7 +10,19 @@ import SwiftUI
 
 struct StatisticsView: View {
 
-    let stat: StatisticsModel
+    private let stat: StatisticsModel
+    private let verticalPadding: CGFloat
+    private let horizontalPadding: CGFloat
+
+    init(
+        stat: StatisticsModel,
+        verticalPadding: CGFloat = 16,
+        horizontalPadding: CGFloat = 16
+    ) {
+        self.stat = stat
+        self.verticalPadding = verticalPadding
+        self.horizontalPadding = horizontalPadding
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -38,7 +50,8 @@ struct StatisticsView: View {
             .opacity(stat.percetageChange == nil ? 0 : 1)
         }
         .foregroundColor(.theme.textColor)
-        .padding(16)
+        .padding(.vertical, verticalPadding)
+        .padding(.horizontal, horizontalPadding)
     }
 }
 

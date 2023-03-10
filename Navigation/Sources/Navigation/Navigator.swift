@@ -41,6 +41,7 @@ public class Navigator<T: NavigationStackable>: ObservableObject {
                     AnyView(self.viewer.view(for: destination))
                 }
         }
+        .tint(.white)
     }
 
     public required init(root: T, viewer: DestinationViewer<T>) {

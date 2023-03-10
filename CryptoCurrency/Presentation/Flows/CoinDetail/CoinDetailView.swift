@@ -22,12 +22,30 @@ struct CoinDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                Text("")
-                    .frame(height: 150)
+                titleRow()
+                    .padding(.top, 24)
+
+                divider()
+                    .padding(.top, 8)
+
+                VStack(alignment: .leading, spacing: 24) {
+                    Text("LATEST WEEKS DEVELOPMENT")
+                        .font(.textStyle.smallText)
+                        .bold()
+                        .foregroundColor(.theme.lightGray)
+
+                    CustomChartView(coin: vm.coin)
+                }
+                .padding(.vertical, 32)
+
 
                 statisticsGridView(title: "Overview", stats: vm.overviewStatistics)
+                    .padding(.top, 24)
+
+                divider()
 
                 statisticsGridView(title: "Additional Details", stats: vm.additionalStatistics)
+                    .padding(.top, 24)
 
             }
             .padding(.horizontal, 16)
@@ -35,28 +53,61 @@ struct CoinDetailView: View {
         }
         .frame(maxWidth: .infinity)
         .background(Color.theme.backgroundColor)
-        .navigationTitle(vm.coin.name)
+        .navigationTitle(vm.coin.symbol.uppercased())
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Image(systemName: "plus")
+                    .font(.textStyle.smallText)
+                    .foregroundColor(.theme.textColor)
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func titleRow() -> some View {
+        HStack(spacing: 8) {
+            CoinImageView(coin: vm.coin)
+                .frame(width: 30)
+
+            Text(vm.coin.name.uppercased())
+                .font(.textStyle.title)
+                .bold()
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
+        }
     }
 
     @ViewBuilder
     private func statisticsGridView(title: String, stats: [StatisticsModel]) -> some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text(title)
-                .font(.textStyle.mediumText)
+            Text(title.uppercased())
+                .font(.textStyle.smallText)
                 .bold()
+                .foregroundColor(.theme.lightGray)
 
             LazyVGrid(columns: columns, alignment: .leading, spacing: 0) {
                 ForEach(stats) { stat in
-                    StatisticsView(stat: stat)
+                    StatisticsView(stat: stat, horizontalPadding: 0)
+                        .frame(width: UIScreen.main.bounds.width / 2, alignment: .leading)
                 }
             }
         }
+    }
 
+    @ViewBuilder
+    private func divider() -> some View {
+        Rectangle()
+            .padding(.trailing, -16)
+            .frame(height: 2)
+            .foregroundColor(.theme.darkBlue)
     }
 }
 
 struct CoinDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        CoinDetailView(coin: .mockCoin)
+        NavigationStack {
+            CoinDetailView(coin: .mockCoin)
+        }
     }
 }

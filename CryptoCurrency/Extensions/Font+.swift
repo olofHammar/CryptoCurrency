@@ -18,4 +18,5 @@ struct TextScheme {
     let mediumText: Font = .custom("Futura", size: 16)
     let smallText: Font = .custom("Futura", size: 14)
     let smallestText: Font = .custom("Futura", size: 12)
+    let graphText: Font = .custom("Futura", size: 10)
 }
