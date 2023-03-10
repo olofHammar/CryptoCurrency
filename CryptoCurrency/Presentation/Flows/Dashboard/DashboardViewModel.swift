@@ -25,10 +25,11 @@ final class DashboardViewModel: ObservableObject {
     @Published private(set) var coinsList: [CoinModel] = []
     @Published private(set) var portfolioCoins: [CoinModel] = []
     @Published private(set) var selectedCoin: CoinModel?
-    @Published var selectedSortOption: SortOption = .holdings
+    @Published var selectedSortOption: SortOption = .rank
 
     @Published private(set) var isLoading = false
     @Published var isPresentingPortfolio = false
+    @Published private(set) var isPresentingSearchBar = false
     @Published var isPresentingPortfolioSheet = false
     @Published var shouldPresentSavePortfolioButton = false
 
@@ -61,6 +62,9 @@ final class DashboardViewModel: ObservableObject {
 
     func presentPortfolioSheet() {
         guard isPresentingPortfolio else {
+            withAnimation {
+                isPresentingSearchBar.toggle()
+            }
             return
         }
 

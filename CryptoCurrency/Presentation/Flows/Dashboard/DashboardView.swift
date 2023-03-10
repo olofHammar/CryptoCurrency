@@ -23,9 +23,6 @@ struct DashboardView: View {
 
                 DashboardStatsView(showPortfolio: $vm.isPresentingPortfolio, statistics: vm.statistics)
 
-                SearchBarView(searchText: $vm.searchText)
-                    .padding(16)
-
                 if vm.isLoading {
                     ProgressView()
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -49,32 +46,40 @@ struct DashboardView: View {
 
     @ViewBuilder
     private func headerView() -> some View {
-        HStack(spacing: 0) {
-            CircleButtonView(iconName: vm.isPresentingPortfolio ? "plus" : "info")
-                .animation(.none, value: vm.isPresentingPortfolio)
-                .onTapGesture { vm.presentPortfolioSheet() }
-                .background(
-                    CircleButtonAnimationView(animate: $vm.isPresentingPortfolio)
-                        .foregroundColor(.theme.secondaryColor)
-                )
+        VStack(alignment: .leading, spacing: 0) {
+            HStack(spacing: 0) {
+                CircleButtonView(iconName: vm.isPresentingPortfolio ? "plus" : "magnifyingglass")
+                    .animation(.none, value: vm.isPresentingPortfolio)
+                    .onTapGesture { vm.presentPortfolioSheet() }
+                    .background(
+                        CircleButtonAnimationView(animate: $vm.isPresentingPortfolio)
+                            .foregroundColor(.theme.secondaryColor)
+                    )
 
-            Spacer()
+                Spacer()
 
-            Text(vm.isPresentingPortfolio ? "Portfolio" : "Live Prices")
-                .font(.textStyle.mediumText)
-                .fontWeight(.bold)
-                .foregroundColor(.theme.textColor)
-                .animation(.none)
+                Text(vm.isPresentingPortfolio ? "Portfolio" : "Live Prices")
+                    .font(.textStyle.mediumText)
+                    .fontWeight(.bold)
+                    .foregroundColor(.theme.textColor)
+                    .animation(.none)
 
-            Spacer()
+                Spacer()
 
-            CircleButtonView(iconName: "chevron.right")
-                .rotationEffect(Angle(degrees: vm.isPresentingPortfolio ? 180 : 0))
-                .onTapGesture {
-                    withAnimation(.spring()) {
-                        vm.togglePortfolioState()
+                CircleButtonView(iconName: "chevron.right")
+                    .rotationEffect(Angle(degrees: vm.isPresentingPortfolio ? 180 : 0))
+                    .onTapGesture {
+                        withAnimation(.spring()) {
+                            vm.togglePortfolioState()
+                        }
                     }
-                }
+            }
+
+            if vm.isPresentingSearchBar {
+                SearchBarView(searchText: $vm.searchText)
+                    .padding([.horizontal, .bottom], 16)
+                    .animation(.linear, value: vm.isPresentingSearchBar)
+            }
         }
         .background(Color.theme.mediumDarkBlue)
     }
