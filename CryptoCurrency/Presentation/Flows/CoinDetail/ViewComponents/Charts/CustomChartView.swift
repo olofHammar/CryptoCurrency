@@ -47,8 +47,9 @@ struct CustomChartView: View {
             shortDateLabels()
         }
         .frame(maxWidth: .infinity)
-        .padding(32)
-        .modifier(GradientCardModifier())
+        .padding(.horizontal, 16)
+        .padding(.vertical, 32)
+        .modifier(GradientCardModifier(cornerRadius: 8))
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 withAnimation(.linear(duration: 1.5)) {

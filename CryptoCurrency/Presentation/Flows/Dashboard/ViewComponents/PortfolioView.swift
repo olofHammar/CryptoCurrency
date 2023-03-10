@@ -11,16 +11,18 @@ import SwiftUI
 struct PortfolioView: View {
 
     @ObservedObject var vm: DashboardViewModel
-    @Namespace private var animation
 
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
-                    SearchBarView(searchText: $vm.searchText)
-                        .padding(.top, 8)
-                        .padding(.horizontal, 16)
 
+                    Text("MY COINS")
+                        .font(.textStyle.mediumText)
+                        .bold()
+                        .foregroundColor(.theme.lightGray)
+                        .padding([.leading, .top], 16)
+                    
                     coinIconsList()
 
                     if let coin = vm.selectedCoin {
@@ -56,7 +58,7 @@ struct PortfolioView: View {
     private func coinIconsList() -> some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack(spacing: 0) {
-                ForEach(vm.coinsList) { coin in
+                ForEach(vm.portfolioCoins) { coin in
                     VStack(spacing: 8) {
                         CoinIconView(coin: coin)
                             .frame(width: 50)

@@ -25,12 +25,9 @@ struct CoinDetailView: View {
                 titleRow()
                     .padding(.top, 24)
 
-                divider()
-                    .padding(.top, 8)
-
                 VStack(alignment: .leading, spacing: 24) {
                     Text("LATEST WEEKS DEVELOPMENT")
-                        .font(.textStyle.smallText)
+                        .font(.textStyle.mediumText)
                         .bold()
                         .foregroundColor(.theme.lightGray)
 
@@ -40,27 +37,33 @@ struct CoinDetailView: View {
 
 
                 statisticsGridView(title: "Overview", stats: vm.overviewStatistics)
-                    .padding(.top, 24)
-
-                divider()
+                    .padding(.bottom, 32)
 
                 statisticsGridView(title: "Additional Details", stats: vm.additionalStatistics)
-                    .padding(.top, 24)
+                    .padding(.bottom, 32)
 
             }
             .padding(.horizontal, 16)
             .foregroundColor(.theme.textColor)
         }
         .frame(maxWidth: .infinity)
-        .background(Color.theme.backgroundColor)
+        .background(LinearGradient(colors: [
+            .theme.backgroundColor,
+            .theme.mediumDarkBlue
+        ], startPoint: .bottom, endPoint: .top))
         .navigationTitle(vm.coin.symbol.uppercased())
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Image(systemName: "plus")
-                    .font(.textStyle.smallText)
-                    .foregroundColor(.theme.textColor)
+                Button(action: vm.presentBuySheet) {
+                    Image(systemName: "plus")
+                        .font(.textStyle.smallText)
+                        .foregroundColor(.theme.textColor)
+                }
             }
+        }
+        .sheet(isPresented: $vm.isPresentingBuyCoinSheet) {
+            BuyCoinView(vm: vm)
         }
     }
 
@@ -80,9 +83,9 @@ struct CoinDetailView: View {
 
     @ViewBuilder
     private func statisticsGridView(title: String, stats: [StatisticsModel]) -> some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack(alignment: .leading, spacing: 24) {
             Text(title.uppercased())
-                .font(.textStyle.smallText)
+                .font(.textStyle.mediumText)
                 .bold()
                 .foregroundColor(.theme.lightGray)
 
@@ -92,6 +95,8 @@ struct CoinDetailView: View {
                         .frame(width: UIScreen.main.bounds.width / 2, alignment: .leading)
                 }
             }
+            .padding(.horizontal, 16)
+            .modifier(GradientCardModifier(cornerRadius: 8))
         }
     }
 

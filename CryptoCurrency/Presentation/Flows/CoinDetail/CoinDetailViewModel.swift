@@ -12,11 +12,16 @@ import ShortcutFoundation
 import SwiftUI
 
 final class CoinDetailViewModel: ObservableObject {
+    @Inject private var portfolioDataService: PortfolioDataService
     @Inject private var fetchCoinDetailUseCase: IFetchCoinDetailUseCase
 
     @Published private(set) var coin: CoinModel
     @Published private(set) var overviewStatistics: [StatisticsModel] = []
     @Published private(set) var additionalStatistics: [StatisticsModel] = []
+
+    @Published var isPresentingBuyCoinSheet = false
+    @Published var shouldPresentSaveButton = false
+    @Published var quantityText: String = ""
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -26,10 +31,37 @@ final class CoinDetailViewModel: ObservableObject {
         self.coin = coin
 
         startObservingCoinDetail()
+        startObservingViewStateChanges()
     }
 
     deinit {
         cancellables.forEach { $0.cancel() }
+    }
+
+    func saveCoinToPortfolio() {
+        guard let amount = Double(quantityText) else {
+            return
+        }
+        updatePortfolio(coin: coin, amount: amount)
+    }
+
+    func quantityValue() -> Double {
+        if let quantity = Double(quantityText) {
+            return quantity * coin.currentPrice
+        }
+        return 0
+    }
+
+    func presentBuySheet() {
+        isPresentingBuyCoinSheet = true
+    }
+
+    func dismissBuySheet() {
+        isPresentingBuyCoinSheet = false
+    }
+
+    private func updatePortfolio(coin: CoinModel, amount: Double) {
+        portfolioDataService.updatePortfolio(coin: coin, amount: amount)
     }
 
     private func startObservingCoinDetail() {
@@ -59,6 +91,13 @@ final class CoinDetailViewModel: ObservableObject {
             }
             .store(in: &cancellables)
 
+    }
+
+    private func startObservingViewStateChanges() {
+        $quantityText
+            .map { !$0.isEmpty }
+            .receive(on: RunLoop.main)
+            .assign(to: &$shouldPresentSaveButton)
     }
 
     private func mapCoinToStatistics(coinDetailModel: CoinDetailModel, coinModel: CoinModel) -> (overview: [StatisticsModel], additional: [StatisticsModel]) {
