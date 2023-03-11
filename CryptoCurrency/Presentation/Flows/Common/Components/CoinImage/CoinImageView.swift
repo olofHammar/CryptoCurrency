@@ -22,6 +22,10 @@ struct CoinImageView: View {
                 Image(uiImage: image)
                     .resizable()
                     .scaledToFit()
+                    .saturation(0)
+                    .colorMultiply(.theme.lightBlue)
+                    .shadow(radius: 2, x: 2, y: 2)
+
             } else if vm.isLoading {
                 ProgressView()
             } else {

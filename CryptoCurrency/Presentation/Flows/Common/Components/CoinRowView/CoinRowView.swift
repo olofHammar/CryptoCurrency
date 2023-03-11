@@ -60,7 +60,7 @@ struct CoinRowView: View {
     private func centerColumn() -> some View {
         VStack(alignment: .trailing) {
             Text(coin.currentHoldingsValue.asCurrencyWith2Decimals())
-            Text((coin.currentHoldings ?? 0).asNumberString())
+//            Text((coin.currentHoldings ?? 0).asNumberString())
         }
         .foregroundColor(.theme.lightGray)
         .font(.textStyle.smallText)
@@ -72,11 +72,11 @@ struct CoinRowView: View {
             Text(coin.currentPrice.asCurrencyWith6Decimals())
                 .foregroundColor(.theme.textColor)
 
-            Text(coin.priceChangePercentage24H?.asPercentageString() ?? "")
-                .foregroundColor(
-                    (coin.priceChangePercentage24H ?? 0) >= 0 ?
-                    Color.theme.green : Color.theme.red
-                )
+//            Text(coin.priceChangePercentage24H?.asPercentageString() ?? "")
+//                .foregroundColor(
+//                    (coin.priceChangePercentage24H ?? 0) >= 0 ?
+//                    Color.theme.green : Color.theme.red
+//                )
         }
         .font(.textStyle.smallText)
     }
@@ -84,6 +84,6 @@ struct CoinRowView: View {
 
 struct CoinRowView_Previews: PreviewProvider {
     static var previews: some View {
-        CoinRowView(coin: CoinModel.mockCoin, holdings: nil, isPresentingHoldingsColumn: true)
+        CoinRowView(coin: CoinModel.mockCoin, holdings: nil, isPresentingHoldingsColumn: false)
     }
 }
