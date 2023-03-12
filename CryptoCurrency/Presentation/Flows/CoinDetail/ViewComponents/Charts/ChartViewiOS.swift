@@ -46,7 +46,7 @@ struct ChartViewiOS: View {
                 .symbol(Circle())
             }
         }
-        .modifier(GradientCardModifier(cornerRadius: 0))
+        .modifier(CardModifier(cornerRadius: 0))
         .chartPlotStyle { plotContent in
           plotContent
                 .background(Color.theme.blueShadow.opacity(0.8))

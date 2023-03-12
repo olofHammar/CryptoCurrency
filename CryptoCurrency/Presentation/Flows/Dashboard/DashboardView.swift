@@ -22,6 +22,7 @@ struct DashboardView: View {
                 headerView()
 
                 DashboardStatsView(showPortfolio: $vm.isPresentingPortfolio, statistics: vm.statistics)
+                    .padding(.bottom, 16)
 
                 if vm.isLoading {
                     ProgressView()

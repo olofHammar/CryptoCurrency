@@ -11,7 +11,7 @@
 		E4140EF229B0B766009FFD01 /* ListRowBackgroundModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4140EF129B0B766009FFD01 /* ListRowBackgroundModifier.swift */; };
 		E4140EF529B0FB6D009FFD01 /* CoinImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4140EF429B0FB6D009FFD01 /* CoinImageView.swift */; };
 		E4140EF729B0FBA4009FFD01 /* CoinImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4140EF629B0FBA4009FFD01 /* CoinImageViewModel.swift */; };
-		E45E6E2F29B75F34008AF5CD /* GradientCardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45E6E2E29B75F34008AF5CD /* GradientCardModifier.swift */; };
+		E45E6E2F29B75F34008AF5CD /* CardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45E6E2E29B75F34008AF5CD /* CardModifier.swift */; };
 		E48167A429AF8AF700BBBB1C /* Navigation in Frameworks */ = {isa = PBXBuildFile; productRef = E48167A329AF8AF700BBBB1C /* Navigation */; };
 		E48167A729AF8FF500BBBB1C /* AppDestinationViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48167A629AF8FF500BBBB1C /* AppDestinationViewer.swift */; };
 		E48167AA29AF903300BBBB1C /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48167A929AF903300BBBB1C /* DashboardView.swift */; };
@@ -78,7 +78,7 @@
 		E4140EF129B0B766009FFD01 /* ListRowBackgroundModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRowBackgroundModifier.swift; sourceTree = "<group>"; };
 		E4140EF429B0FB6D009FFD01 /* CoinImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinImageView.swift; sourceTree = "<group>"; };
 		E4140EF629B0FBA4009FFD01 /* CoinImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinImageViewModel.swift; sourceTree = "<group>"; };
-		E45E6E2E29B75F34008AF5CD /* GradientCardModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientCardModifier.swift; sourceTree = "<group>"; };
+		E45E6E2E29B75F34008AF5CD /* CardModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModifier.swift; sourceTree = "<group>"; };
 		E48167A229AF8ADA00BBBB1C /* Navigation */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Navigation; sourceTree = "<group>"; };
 		E48167A629AF8FF500BBBB1C /* AppDestinationViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDestinationViewer.swift; sourceTree = "<group>"; };
 		E48167A929AF903300BBBB1C /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -159,7 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				E4140EF129B0B766009FFD01 /* ListRowBackgroundModifier.swift */,
-				E45E6E2E29B75F34008AF5CD /* GradientCardModifier.swift */,
+				E45E6E2E29B75F34008AF5CD /* CardModifier.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -600,7 +600,7 @@
 				E48167B729AFA0EE00BBBB1C /* DashboardViewModel.swift in Sources */,
 				E4C54DB129A8F9010060F4DB /* RootViewModel.swift in Sources */,
 				E48167AA29AF903300BBBB1C /* DashboardView.swift in Sources */,
-				E45E6E2F29B75F34008AF5CD /* GradientCardModifier.swift in Sources */,
+				E45E6E2F29B75F34008AF5CD /* CardModifier.swift in Sources */,
 				E4AE57F029BB58A100A5F67D /* CustomChartView.swift in Sources */,
 				E4B2314C29B8824E00F10229 /* TextField+Placeholder.swift in Sources */,
 				E48167C429AFB06B00BBBB1C /* CoinRowView.swift in Sources */,

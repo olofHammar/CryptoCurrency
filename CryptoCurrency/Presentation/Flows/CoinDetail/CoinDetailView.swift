@@ -93,7 +93,7 @@ struct CoinDetailView: View {
                 }
             }
             .padding(.horizontal, 16)
-            .modifier(GradientCardModifier(cornerRadius: 8))
+            .modifier(CardModifier(cornerRadius: 8))
         }
     }
 

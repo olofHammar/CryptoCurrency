@@ -39,7 +39,7 @@ struct CoinRowView: View {
         }
         .padding(.vertical, 24)
         .padding(.horizontal, 16)
-        .modifier(GradientCardModifier(cornerRadius: 4))
+        .modifier(CardModifier(cornerRadius: 4))
     }
 
     @ViewBuilder

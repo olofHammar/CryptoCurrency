@@ -1,5 +1,5 @@
 //
-//  GradientCardModifier.swift
+//  CardModifier.swift
 //  CryptoCurrency
 //
 //  Created by Olof Hammar on 2023-03-07.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct GradientCardModifier: ViewModifier {
+struct CardModifier: ViewModifier {
     let cornerRadius: CGFloat
     let shadowRadius: CGFloat
     let backgroundColor: Color
@@ -33,19 +33,9 @@ struct GradientCardModifier: ViewModifier {
                         .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
 
                     RoundedRectangle(cornerRadius: cornerRadius)
-                        .fill(
-                            .linearGradient(colors: [
-                                secondaryColor.opacity(0.35),
-                                secondaryColor.opacity(0.05),
-                                .clear
-                            ], startPoint: .topLeading, endPoint: .bottomTrailing
-                            )
-                        )
-
-                    RoundedRectangle(cornerRadius: cornerRadius)
                             .stroke(
                                 .linearGradient(colors: [
-                                    secondaryColor.opacity(0.4),
+                                    .theme.backgroundColor.opacity(0.4),
                                     .clear,
                                     .theme.backgroundColor.opacity(0.2),
                                     .theme.backgroundColor.opacity(0.5)
@@ -66,7 +56,7 @@ struct GradientCardModifier: ViewModifier {
 }
 
 
-struct GradientCardModifier_Previews: PreviewProvider {
+struct CardModifier_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             VStack {
@@ -75,7 +65,7 @@ struct GradientCardModifier_Previews: PreviewProvider {
                     .foregroundColor(.white)
             }
             .frame(maxWidth: .infinity, maxHeight: 250)
-            .modifier(GradientCardModifier())
+            .modifier(CardModifier())
         }
         .background(Color.theme.backgroundColor)
     }
