@@ -21,26 +21,26 @@ public struct CapsuleButtonStyle: ButtonStyle {
         var height: CGFloat {
             switch self {
             case .small:
-                return 40
+                return .x5
 
             case .medium:
-                return 48
+                return .x6
 
             case .large:
-                return 56
+                return .x7
             }
         }
 
         var horizontalPadding: CGFloat {
             switch self {
             case .small:
-                return 24
+                return .x4
 
             case .medium:
-                return 32
+                return .x5
 
             case .large:
-                return 48
+                return .x6
             }
         }
     }

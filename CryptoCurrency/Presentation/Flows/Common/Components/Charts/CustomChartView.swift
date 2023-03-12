@@ -13,23 +13,9 @@ struct CustomChartView: View {
     @State private var percetage: CGFloat = 0
 
     private let data: [Double]
+    private var yAxisData: [Double]
     private let maxYValue: Double
     private let minYValue: Double
-    private var middleYValues: [Double] {
-        let sortedData = data.sorted()
-
-        var axisValues = [Double]()
-        let middleIndex = (sortedData.count - 1) / 2
-
-        if middleIndex > 0 {
-            axisValues.append(sortedData[middleIndex] - 1)
-        }
-        axisValues.append(sortedData[middleIndex])
-        if middleIndex < sortedData.count - 1 {
-            axisValues.append(sortedData[middleIndex + 1])
-        }
-        return axisValues
-    }
 
     private let lineColor: Color
     private let shadowColor: Color
@@ -49,6 +35,7 @@ struct CustomChartView: View {
         self.shadowColor = priceChange > 0 ? .theme.intenseGreen : .theme.intenseRed
         self.endingDate = Date.init(coinGeckoString: coin.lastUpdated ?? "")
         self.startingDate = endingDate.addingTimeInterval(-7*24*60*60)
+        self.yAxisData = data.chartStats().sorted(by: { $0 > $1 })
     }
 
     var body: some View {
@@ -64,14 +51,14 @@ struct CustomChartView: View {
                 )
                     .background(chartBackground())
             }
-            .frame(height: 150)
+            .frame(height: .defaultChartHeight)
 
             shortDateLabels()
         }
         .frame(maxWidth: .infinity)
-        .padding(.horizontal, 16)
-        .padding(.vertical, 32)
-        .modifier(CardModifier(cornerRadius: 8))
+        .padding(.horizontal, .x2)
+        .padding(.vertical, .x4)
+        .modifier(CardModifier(cornerRadius: .x1))
     }
 
     @ViewBuilder
@@ -101,7 +88,7 @@ struct CustomChartView: View {
 
     @ViewBuilder
     private func chartBackground() -> some View {
-        verticalGridItems(numberOfItems: 4)
+        verticalGridItems(numberOfItems: 3)
     }
 
     @ViewBuilder
@@ -139,17 +126,13 @@ struct CustomChartView: View {
     @ViewBuilder
     private func chartYAxis() -> some View {
         VStack(spacing: 0) {
-            Text(maxYValue.formattedWithAbbreviations())
+            ForEach(yAxisData.indexedArray(), id: \.self) { index in
+                Text(index.element.formattedWithAbbreviations())
 
-            Spacer()
-
-            ForEach(middleYValues, id: \.self) { value in
-                Text(value.formattedWithAbbreviations())
-
-                Spacer()
+                if !index.position.isLast {
+                    Spacer()
+                }
             }
-
-            Text(minYValue.formattedWithAbbreviations())
         }
         .font(.textStyle.smallestText)
         .bold()

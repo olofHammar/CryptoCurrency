@@ -27,8 +27,9 @@ struct StatisticsView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(stat.title.uppercased())
-                .font(.textStyle.smallText)
-                .foregroundColor(.theme.lightGray)
+                .font(.textStyle.smallestText)
+                .bold()
+                .foregroundColor(.theme.textColorSecondary)
                 .lineLimit(1)
                 .minimumScaleFactor(0.8)
 
@@ -39,7 +40,7 @@ struct StatisticsView: View {
 
             HStack(spacing: 4) {
                 Image(systemName: "triangle.fill")
-                    .font(.textStyle.smallText)
+                    .font(.textStyle.smallestText)
                     .rotationEffect(Angle(degrees: (stat.percetageChange ?? 0) >= 0 ? 0 : 180))
 
                 Text(stat.percetageChange?.asPercentageString() ?? "")

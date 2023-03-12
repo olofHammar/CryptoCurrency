@@ -118,12 +118,12 @@ struct DashboardView: View {
             }
 
             HStack(spacing: 4) {
-                Text("PRICE")
-                    .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
-
                 Image(systemName: "chevron.down")
                     .opacity(vm.isSortedByPrice() ? 1 : 0)
                     .rotationEffect(Angle(degrees: vm.isSortedByPrice() ? 0 : 180))
+
+                Text("PRICE")
+                    .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
             }
             .onTapGesture {
                 withAnimation(.default) {
@@ -131,7 +131,8 @@ struct DashboardView: View {
                 }
             }
         }
-        .foregroundColor(.theme.lightGray)
+        .foregroundColor(.theme.textColorSecondary)
+        .bold()
         .font(.textStyle.smallestText)
         .fontWeight(.semibold)
     }
@@ -150,7 +151,7 @@ struct DashboardView: View {
             } else {
                 VStack(spacing: 0) {
                     columnTitles()
-                        .padding(.horizontal, 32)
+                        .padding(.horizontal, 24)
                         .padding(.bottom, 8)
 
                     List {
