@@ -49,14 +49,14 @@ struct CoinRowView: View {
 
             VStack(alignment: .leading, spacing: 0) {
                 Text(coin.symbol.uppercased())
-                    .fontWeight(.heavy)
+                    .font(.textStyle.smallTextBold)
                     .foregroundColor(.theme.textColor)
 
                 Text(coin.name)
+                    .font(.textStyle.smallText)
                     .lineLimit(1)
                     .minimumScaleFactor(0.5)
             }
-            .font(.textStyle.smallText)
             .padding(.leading, 8)
             .foregroundColor(.theme.textColorSecondary)
         }
@@ -83,14 +83,14 @@ struct CoinRowView: View {
     private func trailingColumn() -> some View {
         VStack(alignment: .trailing, spacing: 0) {
             Text(coin.currentPrice.asCurrencyWith6Decimals())
-                .fontWeight(.heavy)
+                .font(.textStyle.smallTextBold)
                 .foregroundColor(.theme.textColor)
 
-//            Text(coin.priceChangePercentage24H?.asPercentageString() ?? "")
-//                .foregroundColor(
-//                    (coin.priceChangePercentage24H ?? 0) >= 0 ?
-//                    Color.theme.green : Color.theme.red
-//                )
+            Text(coin.priceChangePercentage24H?.asPercentageString() ?? "")
+                .foregroundColor(
+                    (coin.priceChangePercentage24H ?? 0) >= 0 ?
+                    Color.theme.green : Color.theme.red
+                )
         }
         .font(.textStyle.smallText)
     }

@@ -8,5 +8,6 @@
 import SwiftUI
 
 extension String {
-    static var fontName: String = "KohinoorTelugu-Medium"
+    static var fontMedium: String = "KohinoorTelugu-Medium"
+    static var fontBold: String = "KohinoorDevanagari-Semibold"
 }

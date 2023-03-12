@@ -21,5 +21,5 @@ extension CGFloat {
     static var x9: CGFloat = 72
     static var x10: CGFloat = 80
 
-    static var defaultChartHeight: CGFloat = 150
+    static var defaultChartHeight: CGFloat = 130
 }

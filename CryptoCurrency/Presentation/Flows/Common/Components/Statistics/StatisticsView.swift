@@ -27,7 +27,7 @@ struct StatisticsView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(stat.title.uppercased())
-                .font(.textStyle.smallestText)
+                .font(.textStyle.smallestTextBold)
                 .bold()
                 .foregroundColor(.theme.textColorSecondary)
                 .lineLimit(1)

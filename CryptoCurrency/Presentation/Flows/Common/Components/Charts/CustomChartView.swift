@@ -56,8 +56,7 @@ struct CustomChartView: View {
             shortDateLabels()
         }
         .frame(maxWidth: .infinity)
-        .padding(.horizontal, .x2)
-        .padding(.vertical, .x4)
+        .padding(.x2)
         .modifier(CardModifier(cornerRadius: .x1))
     }
 
@@ -72,15 +71,14 @@ struct CustomChartView: View {
             ForEach(0..<numberOfItems, id: \.self) { _ in
                 VStack(spacing: 0) {
                     Divider()
-                        .overlay(Color.theme.textColor.opacity(0.2))
+                        .overlay(Color.theme.textColorSecondary.opacity(0.1))
                         .frame(minHeight: 16, alignment: .bottom)
                     Spacer()
                 }
             }
             Divider()
-                .overlay(Color.theme.textColor)
+                .overlay(Color.theme.textColorSecondary.opacity(0.1))
                 .frame(minHeight: 16, alignment: .bottom)
-                .opacity(0.2)
         }
     }
 
@@ -95,7 +93,8 @@ struct CustomChartView: View {
                 }
             }
             Divider()
-                .overlay(Color.theme.textColor)        }
+                .overlay(Color.theme.textColor)
+        }
     }
 
     @ViewBuilder
@@ -109,7 +108,7 @@ struct CustomChartView: View {
                 }
             }
         }
-        .font(.textStyle.smallestText)
+        .font(.textStyle.smallestTextBold)
         .bold()
         .foregroundColor(.theme.lightGray)
     }
@@ -123,9 +122,9 @@ struct CustomChartView: View {
 
             Text(endingDate.asShortDateString().uppercased())
         }
-        .font(.textStyle.smallestText)
+        .font(.textStyle.smallestTextBold)
         .bold()
-        .foregroundColor(.theme.textColor)
+        .foregroundColor(.theme.textColorSecondary)
     }
 }
 

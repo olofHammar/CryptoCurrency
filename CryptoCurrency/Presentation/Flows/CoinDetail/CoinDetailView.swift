@@ -24,9 +24,9 @@ struct CoinDetailView: View {
             VStack(alignment: .leading, spacing: 0) {
                 VStack(alignment: .leading, spacing: 24) {
                     Text("LATEST WEEKS")
-                        .font(.textStyle.mediumText)
+                        .font(.textStyle.mediumTextBold)
                         .bold()
-                        .foregroundColor(.theme.lightGray)
+                        .foregroundColor(.theme.textColorSecondary)
 
                     CustomChartView(coin: vm.coin)
                 }
@@ -51,7 +51,7 @@ struct CoinDetailView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: vm.presentBuySheet) {
                     Image(systemName: "plus")
-                        .font(.textStyle.smallText)
+                        .font(.textStyle.smallTextBold)
                         .foregroundColor(.theme.textColor)
                 }
             }
@@ -79,9 +79,9 @@ struct CoinDetailView: View {
     private func statisticsGridView(title: String, stats: [StatisticsModel]) -> some View {
         VStack(alignment: .leading, spacing: 24) {
             Text(title.uppercased())
-                .font(.textStyle.mediumText)
+                .font(.textStyle.mediumTextBold)
                 .bold()
-                .foregroundColor(.theme.lightGray)
+                .foregroundColor(.theme.textColorSecondary)
 
             LazyVGrid(columns: columns, alignment: .leading, spacing: 0) {
                 ForEach(stats) { stat in

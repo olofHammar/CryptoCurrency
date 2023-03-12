@@ -48,9 +48,7 @@ struct ChartLineView: View {
             }
             .trim(from: 0, to: isAnimating ? percentage : 1)
             .stroke(lineColor, style: StrokeStyle(lineWidth: 1.5, lineCap: .round, lineJoin: .round))
-            .shadow(color: shadowColor.opacity(0.5), radius: 10, x: 0, y: 10)
-            .shadow(color: shadowColor.opacity(0.3), radius: 10, x: 0, y: 20)
-            .shadow(color: shadowColor.opacity(0.1), radius: 10, x: 0, y: 30)
+            .shadow(color: shadowColor.opacity(0.5), radius: 10, x: 0, y: 2)
             .clipped()
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
