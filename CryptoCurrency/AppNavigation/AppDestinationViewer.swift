@@ -16,14 +16,9 @@ class AppDestinationViewer: DestinationViewer<Destination> {
         case .root:
             RootView()
 
-        case .dashboard:
-            DashboardView()
-
-        case .profile:
-            ProfileView()
-
         case .coinDetail(let coin):
             CoinDetailView(coin: coin)
+                .customNavigationBarBackButton()
         }
     }
 }

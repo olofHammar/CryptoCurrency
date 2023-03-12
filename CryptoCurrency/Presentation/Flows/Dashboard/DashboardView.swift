@@ -133,6 +133,7 @@ struct DashboardView: View {
         }
         .foregroundColor(.theme.lightGray)
         .font(.textStyle.smallestText)
+        .fontWeight(.semibold)
     }
 
     @ViewBuilder
@@ -161,6 +162,7 @@ struct DashboardView: View {
                                 .onTapGesture {
                                     vm.navigateToCoinDetail(with: coin)
                                 }
+                                .padding(.vertical, 4)
                         }
                     }
                     .listStyle(PlainListStyle())

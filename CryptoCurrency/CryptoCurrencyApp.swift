@@ -17,8 +17,16 @@ struct CryptoCurrencyApp: App {
     @InjectObject private var navigator: AppNavigator
 
     init() {
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor : UIColor(Color.theme.textColor), .font : UIFont(name: "Kailasa", size: 32)!]
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor : UIColor(Color.theme.textColor), .font : UIFont(name: "Kailasa", size: 16)!]
+        UINavigationBar.appearance().largeTitleTextAttributes = [
+            .foregroundColor : UIColor(Color.theme.textColor),
+            .font : UIFont(name: "KohinoorTelugu-Medium", size: 32)!
+        ]
+
+        UINavigationBar.appearance().titleTextAttributes = [
+            .foregroundColor : UIColor(Color.theme.textColor),
+            .font : UIFont(name: "KohinoorTelugu-Medium", size: 16)!
+        ]
+
         UINavigationBar.appearance().tintColor = UIColor(Color.theme.textColor)
     }
 

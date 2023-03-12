@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension String {
-    static var fontName: String = "Kailasa"
+    static var fontName: String = "KohinoorTelugu-Medium"
 }
 
 struct Font_Previews: PreviewProvider {
