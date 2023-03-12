@@ -10,22 +10,3 @@ import SwiftUI
 extension String {
     static var fontName: String = "KohinoorTelugu-Medium"
 }
-
-struct Font_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            Text("Live Prices")
-                .font(.textStyle.title)
-
-            Text("Bitcoin")
-                .font(.textStyle.mediumText)
-
-            Text("BTC")
-                .font(.textStyle.smallText)
-                .bold()
-
-            Text("200,00,01")
-                .font(.textStyle.mediumText)
-        }
-    }
-}

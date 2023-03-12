@@ -48,7 +48,7 @@ public struct MarketDataModel: Codable {
 
 public extension Double {
     func asNumberString() -> String {
-        return String(format: "%.2f", self)
+        return String(format: "%.1f", self)
     }
 
     func asPercentageString() -> String {
@@ -61,23 +61,28 @@ public extension Double {
 
         switch num {
         case 1_000_000_000_000...:
-            let formatted = num / 1_000_000_000_000
+            let formatted = num / 1_000_000_000_00
             let stringFormatted = formatted.asNumberString()
             return "\(sign)\(stringFormatted)Tr"
+
         case 1_000_000_000...:
-            let formatted = num / 1_000_000_000
+            let formatted = num / 1_000_000_00
             let stringFormatted = formatted.asNumberString()
             return "\(sign)\(stringFormatted)Bn"
+
         case 1_000_000...:
-            let formatted = num / 1_000_000
+            let formatted = num / 1_000_00
             let stringFormatted = formatted.asNumberString()
             return "\(sign)\(stringFormatted)M"
+
         case 1_000...:
-            let formatted = num / 1_000_000
+            let formatted = num / 1_00
             let stringFormatted = formatted.asNumberString()
             return "\(sign)\(stringFormatted)K"
+            
         case 0...:
-            return self.asNumberString()
+            let stringFormatted = String(format: "%.1f", (self * 10))
+            return  "\(sign)\(stringFormatted)kr"
 
         default:
             return "\(sign)\(self)"

@@ -14,8 +14,6 @@ struct CustomChartView: View {
 
     private let data: [Double]
     private var yAxisData: [Double]
-    private let maxYValue: Double
-    private let minYValue: Double
 
     private let lineColor: Color
     private let shadowColor: Color
@@ -26,8 +24,11 @@ struct CustomChartView: View {
         coin: CoinModel
     ) {
         self.data = coin.sparklineIn7D?.price ?? []
-        self.maxYValue = data.max() ?? 0
-        self.minYValue = data.min() ?? 0
+
+        let minY = data.min() ?? 0
+        let maxY = data.max() ?? 0
+        let middleY = (maxY + minY) / 2
+        self.yAxisData = [maxY, middleY, minY]
 
         let priceChange = (data.last ?? 0) - (data.first ?? 0)
 
@@ -35,7 +36,6 @@ struct CustomChartView: View {
         self.shadowColor = priceChange > 0 ? .theme.intenseGreen : .theme.intenseRed
         self.endingDate = Date.init(coinGeckoString: coin.lastUpdated ?? "")
         self.startingDate = endingDate.addingTimeInterval(-7*24*60*60)
-        self.yAxisData = data.chartStats().sorted(by: { $0 > $1 })
     }
 
     var body: some View {
@@ -62,33 +62,8 @@ struct CustomChartView: View {
     }
 
     @ViewBuilder
-    private func chartView() -> some View {
-        GeometryReader { geo in
-            Path { path in
-                for index in data.indices {
-                    let xPosition = geo.size.width / CGFloat(data.count) * CGFloat(index + 1)
-                    let yAxis = maxYValue - minYValue
-                    let yPosition = (1 - CGFloat((data[index] - minYValue) / yAxis)) * geo.size.height
-
-                    if index == 0 {
-                        path.move(to: CGPoint(x: xPosition, y: yPosition))
-                    }
-
-                    path.addLine(to: CGPoint(x: xPosition, y: yPosition))
-                }
-            }
-            .trim(from: 0, to: percetage)
-            .stroke(lineColor, style: StrokeStyle(lineWidth: 1.5, lineCap: .round, lineJoin: .round))
-            .shadow(color: shadowColor.opacity(0.5), radius: 10, x: 0, y: 10)
-            .shadow(color: shadowColor.opacity(0.3), radius: 10, x: 0, y: 20)
-            .shadow(color: shadowColor.opacity(0.1), radius: 10, x: 0, y: 30)
-            .clipped()
-        }
-    }
-
-    @ViewBuilder
     private func chartBackground() -> some View {
-        verticalGridItems(numberOfItems: 3)
+        verticalGridItems(numberOfItems: 2)
     }
 
     @ViewBuilder
@@ -151,16 +126,6 @@ struct CustomChartView: View {
         .font(.textStyle.smallestText)
         .bold()
         .foregroundColor(.theme.textColor)
-    }
-
-    @ViewBuilder
-    private func customDivider(
-        with strokeThickness: CGFloat = 2,
-        color: Color = Color.theme.lightGray
-    ) -> some View {
-        Rectangle()
-            .frame(height: strokeThickness)
-            .foregroundColor(color)
     }
 }
 

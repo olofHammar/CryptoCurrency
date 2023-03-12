@@ -73,7 +73,7 @@ struct CoinRowView: View {
             .font(.textStyle.smallText)
         } else {
             ChartLineView(data: coin.sparklineIn7D?.price ?? [], shadowColor: .clear)
-                .frame(maxHeight: 60)
+                .frame(maxHeight: 100)
                 .frame(minWidth: UIScreen.main.bounds.width / 3.5)
                 .overlay(gradientOverlay())
         }
@@ -86,11 +86,11 @@ struct CoinRowView: View {
                 .fontWeight(.heavy)
                 .foregroundColor(.theme.textColor)
 
-            Text(coin.priceChangePercentage24H?.asPercentageString() ?? "")
-                .foregroundColor(
-                    (coin.priceChangePercentage24H ?? 0) >= 0 ?
-                    Color.theme.green : Color.theme.red
-                )
+//            Text(coin.priceChangePercentage24H?.asPercentageString() ?? "")
+//                .foregroundColor(
+//                    (coin.priceChangePercentage24H ?? 0) >= 0 ?
+//                    Color.theme.green : Color.theme.red
+//                )
         }
         .font(.textStyle.smallText)
     }
@@ -109,6 +109,10 @@ struct CoinRowView: View {
 
 struct CoinRowView_Previews: PreviewProvider {
     static var previews: some View {
-        CoinRowView(coin: CoinModel.mockCoin, holdings: nil, isPresentingHoldingsColumn: false)
+        Group {
+            CoinRowView(coin: CoinModel.mockCoin, holdings: nil, isPresentingHoldingsColumn: false)
+
+            CoinRowView(coin: CoinModel.mockCoin2, holdings: nil, isPresentingHoldingsColumn: false)
+        }
     }
 }

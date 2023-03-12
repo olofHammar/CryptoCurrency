@@ -46,7 +46,7 @@ struct ChartLineView: View {
                     path.addLine(to: CGPoint(x: xPosition, y: yPosition))
                 }
             }
-            .trim(from: 0, to: isAnimating ? percentage : maxYValue)
+            .trim(from: 0, to: isAnimating ? percentage : 1)
             .stroke(lineColor, style: StrokeStyle(lineWidth: 1.5, lineCap: .round, lineJoin: .round))
             .shadow(color: shadowColor.opacity(0.5), radius: 10, x: 0, y: 10)
             .shadow(color: shadowColor.opacity(0.3), radius: 10, x: 0, y: 20)
