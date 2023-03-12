@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E413999629BDD48700DC85DC /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E413999529BDD48700DC85DC /* CGFloat+.swift */; };
+		E413999A29BDDC0500DC85DC /* ChartLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E413999929BDDC0500DC85DC /* ChartLineView.swift */; };
+		E413999C29BDE61F00DC85DC /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E413999B29BDE61F00DC85DC /* String+.swift */; };
 		E4140EEF29B0ADFA009FFD01 /* View+CustomCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4140EEE29B0ADFA009FFD01 /* View+CustomCorners.swift */; };
 		E4140EF229B0B766009FFD01 /* ListRowBackgroundModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4140EF129B0B766009FFD01 /* ListRowBackgroundModifier.swift */; };
 		E4140EF529B0FB6D009FFD01 /* CoinImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4140EF429B0FB6D009FFD01 /* CoinImageView.swift */; };
@@ -74,6 +77,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E413999529BDD48700DC85DC /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
+		E413999929BDDC0500DC85DC /* ChartLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartLineView.swift; sourceTree = "<group>"; };
+		E413999B29BDE61F00DC85DC /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		E4140EEE29B0ADFA009FFD01 /* View+CustomCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+CustomCorners.swift"; sourceTree = "<group>"; };
 		E4140EF129B0B766009FFD01 /* ListRowBackgroundModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRowBackgroundModifier.swift; sourceTree = "<group>"; };
 		E4140EF429B0FB6D009FFD01 /* CoinImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinImageView.swift; sourceTree = "<group>"; };
@@ -229,6 +235,8 @@
 				E4140EEE29B0ADFA009FFD01 /* View+CustomCorners.swift */,
 				E4B2314D29B886D800F10229 /* UIApplication+Keyboard.swift */,
 				E4AE57F129BB619700A5F67D /* Date+.swift */,
+				E413999529BDD48700DC85DC /* CGFloat+.swift */,
+				E413999B29BDE61F00DC85DC /* String+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -244,6 +252,7 @@
 		E48167BC29AFA69000BBBB1C /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				E4AE57EE29BB57E400A5F67D /* Charts */,
 				E4B2315129B899F900F10229 /* Statistics */,
 				E48167BF29AFA95F00BBBB1C /* CircleButton */,
 				E4140EF329B0FB5B009FFD01 /* CoinImage */,
@@ -273,7 +282,6 @@
 		E4AE57EB29BB244200A5F67D /* ViewComponents */ = {
 			isa = PBXGroup;
 			children = (
-				E4AE57EE29BB57E400A5F67D /* Charts */,
 				E4AE57F329BB7A9E00A5F67D /* BuyCoinView.swift */,
 			);
 			path = ViewComponents;
@@ -284,6 +292,7 @@
 			children = (
 				E4AE57EC29BB245600A5F67D /* ChartViewiOS.swift */,
 				E4AE57EF29BB58A100A5F67D /* CustomChartView.swift */,
+				E413999929BDDC0500DC85DC /* ChartLineView.swift */,
 			);
 			path = Charts;
 			sourceTree = "<group>";
@@ -583,6 +592,7 @@
 				E4140EF529B0FB6D009FFD01 /* CoinImageView.swift in Sources */,
 				E4B2315829B8D4BA00F10229 /* PortfolioView.swift in Sources */,
 				E4AE57ED29BB245600A5F67D /* ChartViewiOS.swift in Sources */,
+				E413999C29BDE61F00DC85DC /* String+.swift in Sources */,
 				E4C54DAC29A8DBD10060F4DB /* AppConfig.swift in Sources */,
 				E4AE57F229BB619700A5F67D /* Date+.swift in Sources */,
 				E4B2315A29B8D9F800F10229 /* CoinIconView.swift in Sources */,
@@ -590,6 +600,7 @@
 				E4B2315329B89A1200F10229 /* StatisticsView.swift in Sources */,
 				E4B2315029B8940700F10229 /* Font+.swift in Sources */,
 				E48167C129AFA97600BBBB1C /* CircleButtonAnimationView.swift in Sources */,
+				E413999A29BDDC0500DC85DC /* ChartLineView.swift in Sources */,
 				E48167BE29AFA6A300BBBB1C /* CircleButtonView.swift in Sources */,
 				E4AE57F429BB7A9E00A5F67D /* BuyCoinView.swift in Sources */,
 				E4B2314A29B87DDC00F10229 /* SearchBarView.swift in Sources */,
@@ -610,6 +621,7 @@
 				E4E196AA29B9C37900A467ED /* PortfolioContainer.xcdatamodeld in Sources */,
 				E48167A729AF8FF500BBBB1C /* AppDestinationViewer.swift in Sources */,
 				E48167B329AF95EA00BBBB1C /* TabBarView.swift in Sources */,
+				E413999629BDD48700DC85DC /* CGFloat+.swift in Sources */,
 				E48167BA29AFA2D900BBBB1C /* Color+.swift in Sources */,
 				E4E196AC29B9C43D00A467ED /* PortfolioDataService.swift in Sources */,
 				E4140EEF29B0ADFA009FFD01 /* View+CustomCorners.swift in Sources */,

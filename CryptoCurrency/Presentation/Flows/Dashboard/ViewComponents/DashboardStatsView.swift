@@ -22,10 +22,6 @@ struct DashboardStatsView: View {
             }
         }
         .frame(width: UIScreen.main.bounds.width, alignment: showPortfolio ? .trailing : .leading)
-        .background(LinearGradient(colors: [
-            .theme.backgroundColor,
-            .theme.mediumDarkBlue
-        ], startPoint: .bottom, endPoint: .top))
     }
 }
 

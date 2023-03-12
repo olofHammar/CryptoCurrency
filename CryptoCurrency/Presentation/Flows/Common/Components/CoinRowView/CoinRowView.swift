@@ -27,12 +27,11 @@ struct CoinRowView: View {
     var body: some View {
         HStack(spacing: 0) {
             leadingColumn()
+                .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .leading)
 
             Spacer()
 
-            if isPresentingHoldingsColumn {
-                centerColumn()
-            }
+            centerColumn()
 
             trailingColumn()
                 .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
@@ -44,26 +43,41 @@ struct CoinRowView: View {
 
     @ViewBuilder
     private func leadingColumn() -> some View {
-        HStack(spacing: 0) {
+        HStack(spacing: 8) {
             CoinImageView(coin: coin)
-                .frame(width: 40, height: 40)
+                .frame(width: 25)
 
-            Text(coin.symbol.uppercased())
-                .font(.textStyle.mediumText)
-                .fontWeight(.heavy)
-                .padding(.leading, 8)
-                .foregroundColor(.theme.textColor)
+            VStack(alignment: .leading, spacing: 0) {
+                Text(coin.symbol.uppercased())
+                    .font(.textStyle.mediumText)
+                    .fontWeight(.heavy)
+                    .foregroundColor(.theme.textColor)
+
+                Text(coin.name)
+                    .font(.textStyle.smallestText)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.5)
+            }
+            .padding(.leading, 8)
+            .foregroundColor(.theme.textColorSecondary)
         }
     }
 
     @ViewBuilder
     private func centerColumn() -> some View {
-        VStack(alignment: .trailing) {
-            Text(coin.currentHoldingsValue.asCurrencyWith2Decimals())
-//            Text((coin.currentHoldings ?? 0).asNumberString())
+        if isPresentingHoldingsColumn {
+            VStack(alignment: .trailing) {
+                Text(coin.currentHoldingsValue.asCurrencyWith2Decimals())
+                Text((coin.currentHoldings ?? 0).asNumberString())
+            }
+            .foregroundColor(.theme.lightGray)
+            .font(.textStyle.smallText)
+        } else {
+            ChartLineView(data: coin.sparklineIn7D?.price ?? [], shadowColor: .clear)
+                .frame(maxHeight: 60)
+                .frame(minWidth: UIScreen.main.bounds.width / 3.5)
+                .overlay(gradientOverlay())
         }
-        .foregroundColor(.theme.lightGray)
-        .font(.textStyle.smallText)
     }
 
     @ViewBuilder
@@ -72,13 +86,24 @@ struct CoinRowView: View {
             Text(coin.currentPrice.asCurrencyWith6Decimals())
                 .foregroundColor(.theme.textColor)
 
-//            Text(coin.priceChangePercentage24H?.asPercentageString() ?? "")
-//                .foregroundColor(
-//                    (coin.priceChangePercentage24H ?? 0) >= 0 ?
-//                    Color.theme.green : Color.theme.red
-//                )
+            Text(coin.priceChangePercentage24H?.asPercentageString() ?? "")
+                .foregroundColor(
+                    (coin.priceChangePercentage24H ?? 0) >= 0 ?
+                    Color.theme.green : Color.theme.red
+                )
         }
         .font(.textStyle.smallText)
+    }
+
+    @ViewBuilder
+    private func gradientOverlay() -> some View {
+        LinearGradient(colors: [
+            .theme.secondaryBackground,
+            .clear,
+            .clear,
+            .clear,
+            .theme.secondaryBackground
+        ], startPoint: .leading, endPoint: .trailing)
     }
 }
 

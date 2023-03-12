@@ -28,6 +28,7 @@ struct ColorTheme {
     let mediumDarkBlue = Color("Colors/MediumDarkBlue")
     let darkBlue = Color("Colors/DarkBlue")
     let secondaryColor = Color("Colors/SecondaryColor")
-    let blueShadow = Color("Colors/BlueShadow")
+    let shadow = Color("Colors/Shadow")
     let textColor = Color("Colors/TextWhite")
+    let textColorSecondary = Color("Colors/TextGray")
 }

@@ -23,7 +23,7 @@ struct CoinImageView: View {
                     .resizable()
                     .scaledToFit()
                     .saturation(0)
-                    .colorMultiply(.theme.lightBlue)
+                    .colorMultiply(.theme.accentColor)
                     .shadow(radius: 2, x: 2, y: 2)
 
             } else if vm.isLoading {

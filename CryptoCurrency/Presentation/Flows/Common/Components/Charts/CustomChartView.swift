@@ -55,7 +55,13 @@ struct CustomChartView: View {
         VStack(alignment: .leading, spacing: 8) {
             HStack(spacing: 4) {
                 chartYAxis()
-                chartView()
+                
+                ChartLineView(
+                    data: data,
+                    lineColor: lineColor,
+                    shadowColor: shadowColor,
+                    isAnimating: true
+                )
                     .background(chartBackground())
             }
             .frame(height: 150)
@@ -66,13 +72,6 @@ struct CustomChartView: View {
         .padding(.horizontal, 16)
         .padding(.vertical, 32)
         .modifier(CardModifier(cornerRadius: 8))
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                withAnimation(.linear(duration: 1.5)) {
-                    percetage = 1
-                }
-            }
-        }
     }
 
     @ViewBuilder

@@ -54,7 +54,7 @@ struct DashboardView: View {
                     .onTapGesture { vm.presentPortfolioSheet() }
                     .background(
                         CircleButtonAnimationView(animate: $vm.isPresentingPortfolio)
-                            .foregroundColor(.theme.secondaryColor)
+                            .foregroundColor(.theme.textColor)
                     )
 
                 Spacer()
@@ -82,7 +82,6 @@ struct DashboardView: View {
                     .animation(.linear, value: vm.isPresentingSearchBar)
             }
         }
-        .background(Color.theme.mediumDarkBlue)
     }
 
     @ViewBuilder

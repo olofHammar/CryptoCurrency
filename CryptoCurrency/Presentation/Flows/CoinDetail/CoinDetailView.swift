@@ -23,7 +23,7 @@ struct CoinDetailView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 VStack(alignment: .leading, spacing: 24) {
-                    Text("LATEST WEEKS DEVELOPMENT")
+                    Text("LATEST WEEKS")
                         .font(.textStyle.mediumText)
                         .bold()
                         .foregroundColor(.theme.lightGray)
@@ -44,11 +44,8 @@ struct CoinDetailView: View {
             .foregroundColor(.theme.textColor)
         }
         .frame(maxWidth: .infinity)
-        .background(LinearGradient(colors: [
-            .theme.backgroundColor,
-            .theme.mediumDarkBlue
-        ], startPoint: .bottom, endPoint: .top))
-        .navigationTitle(vm.coin.name.uppercased())
+        .background(Color.theme.backgroundColor)
+        .navigationTitle(vm.coin.name)
         .navigationBarTitleDisplayMode(.large)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {

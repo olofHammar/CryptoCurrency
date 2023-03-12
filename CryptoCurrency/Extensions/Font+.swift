@@ -12,11 +12,11 @@ extension Font {
 }
 
 struct TextScheme {
-    let title: Font = .custom("Futura", size: 32)
-    let subtitle: Font = .custom("Futura", size: 24)
-    let largeText: Font = .custom("Futura", size: 18)
-    let mediumText: Font = .custom("Futura", size: 16)
-    let smallText: Font = .custom("Futura", size: 14)
-    let smallestText: Font = .custom("Futura", size: 12)
-    let graphText: Font = .custom("Futura", size: 10)
+    let title: Font = .custom(String.fontName, size: 32)
+    let subtitle: Font = .custom(String.fontName, size: 24)
+    let largeText: Font = .custom(String.fontName, size: 18)
+    let mediumText: Font = .custom(String.fontName, size: 16)
+    let smallText: Font = .custom(String.fontName, size: 14)
+    let smallestText: Font = .custom(String.fontName, size: 12)
+    let graphText: Font = .custom(String.fontName, size: 10)
 }

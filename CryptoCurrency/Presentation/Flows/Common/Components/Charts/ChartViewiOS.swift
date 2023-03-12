@@ -49,7 +49,7 @@ struct ChartViewiOS: View {
         .modifier(CardModifier(cornerRadius: 0))
         .chartPlotStyle { plotContent in
           plotContent
-                .background(Color.theme.blueShadow.opacity(0.8))
+                .background(Color.theme.shadow.opacity(0.8))
                 .border(Color.theme.backgroundColor, width: 1)
         }
         .preferredColorScheme(.dark)
